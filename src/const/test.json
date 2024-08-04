@@ -1,0 +1,63 @@
+{
+  "title": "Patient Assessment Form",
+  "logoPosition": "right",
+  "pages": [
+    {
+      "name": "Patient information",
+      "title": "Patient information",
+      "elements": [
+        {
+          "type": "panel",
+          "name": "patient-information",
+          "title": "All fields with an asterisk (*) are required fields, and must be filled out in order to process the information in strict confidentiality.",
+          "elements": [
+            {
+              "type": "text",
+              "name": "first-name",
+              "title": "First name",
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "last-name",
+              "startWithNewLine": false,
+              "title": "Last name",
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "ssn",
+              "title": "Social Security number",
+              "requiredErrorText": "You SSN must be a 9-digit number.",
+              "maxLength": 9,
+              "isRequired": true,
+              "validators": [
+                {
+                  "type": "regex",
+                  "text": "Your SSN must be a 9-digit number",
+                  "regex": "^(?!0{3})(?!6{3})[0-8]\\d{2}-?(?!0{2})\\d{2}-?(?!0{4})\\d{4}$"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "name": "birthdate",
+              "startWithNewLine": false,
+              "title": "Date of birth",
+              "isRequired": true,
+              "inputType": "date"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "showTOC": true,
+  "completeText": "Submit",
+  "showPreviewBeforeComplete": "showAllQuestions",
+  "showQuestionNumbers": false,
+  "questionErrorLocation": "bottom",
+  "widthMode": "static",
+  "width": "1200px"
+}
+  
