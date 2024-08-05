@@ -8,24 +8,20 @@
           "elements": [
             {
               "type": "text",
-              "name": "patientLastName",
-              "title": "(Last)",
-              "isRequired": true
-            },
-            {
-              "type": "text",
               "name": "patienFirstName",
               "startWithNewLine": false,
-              "title": "(First)",
-              "isRequired": true
+              "title": "First Name",
+              "isRequired": true,
+              "span": "6/12"
             },
             {
               "type": "text",
-              "name": "patientMiddleName",
-              "title": "(M.I)"
+              "name": "patientLastName",
+              "title": "Last Name",
+              "isRequired": true,
+              "span": "6/12"
             }
           ],
-          "questionTitleLocation": "bottom",
           "title": "Patient Name"
         },
         {
@@ -65,7 +61,6 @@
               "title": "Sex:"
             }
           ],
-          "questionTitleLocation": "left",
           "title": "Social Security & Birth Date"
         },
         {
@@ -380,7 +375,6 @@
         }
       ],
       "name": "medicalHistory",
-      "questionTitleLocation": "left",
       "title": "Past Medical History"
     },
     {
@@ -626,7 +620,6 @@
         }
       ],
       "name": "socialHistory",
-      "questionTitleLocation": "left",
       "title": "Social History"
     },
     {
@@ -765,7 +758,6 @@
         }
       ],
       "name": "familyHistory",
-      "questionTitleLocation": "left",
       "title": "Family History"
     },
     {
@@ -883,7 +875,6 @@
         }
       ],
       "name": "healthcareProvider",
-      "questionTitleLocation": "left",
       "title": "Healthcare Provider Information"
     },
     {
@@ -1116,7 +1107,6 @@
                   "title": "Adhesive tape"
                 }
               ],
-              "questionTitleLocation": "left",
               "title": "Have you had an allergic reaction to:"
             }
           ],
@@ -1142,7 +1132,6 @@
               "visibleIf": "{hasFoodAllergies} = 'Yes'"
             }
           ],
-          "questionTitleLocation": "left",
           "title": "Food Allergies"
         }
       ],
@@ -1400,7 +1389,6 @@
         }
       ],
       "name": "systemsReview",
-      "questionTitleLocation": "left",
       "title": "System Review"
     },
     {
@@ -1460,7 +1448,6 @@
         }
       ],
       "name": "selfCare",
-      "questionTitleLocation": "top",
       "title": "Self-Care/Home Environment Assessment"
     },
     {

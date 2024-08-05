@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+import { renderElement } from '../../../helper';
 
-const FormContent = ({ page }) => {
-  console.log(page);
+const FormContent = ({ model, page }) => {
+  const pageDetails = useMemo(() => model?.pages?.at(page) ?? null, [model, page]);
+
   return (
-    <div className="w-full p-4">
-      <div>{page.title}</div>
+    <div
+      className="p-4 w-full h-full bg-gray-100"
+      style={{
+        maxWidth: model.widthMode === 'static' ? model.width : '100%',
+        margin: '0 auto',
+      }}
+    >
+      <div>{pageDetails?.title}</div>
+      <div className="flex flex-col gap-3">
+        {pageDetails?.elements.map(element => renderElement(element))}
+      </div>
     </div>
   );
 };

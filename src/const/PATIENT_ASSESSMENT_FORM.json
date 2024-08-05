@@ -15,14 +15,16 @@
               "type": "text",
               "name": "first-name",
               "title": "First name",
-              "isRequired": true
+              "isRequired": true,
+              "span": "6/12"
             },
             {
               "type": "text",
               "name": "last-name",
               "startWithNewLine": false,
               "title": "Last name",
-              "isRequired": true
+              "isRequired": true,
+              "span": "6/12"
             },
             {
               "type": "text",
@@ -576,8 +578,6 @@
   "showTOC": true,
   "completeText": "Submit",
   "showPreviewBeforeComplete": "showAllQuestions",
-  "showQuestionNumbers": false,
-  "questionErrorLocation": "bottom",
   "widthMode": "static",
   "width": "1200px"
 }
