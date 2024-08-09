@@ -1,9 +1,9 @@
 import React from 'react';
 import { renderElement } from '../../../helper';
 
-const Panel = ({ element, children }) => {
+const Panel = ({ element }) => {
   return (
-    <div className="w-full border border-solid border-gray-500 rounded-md">
+    <div className="w-full bg-white border border-solid border-gray-500 rounded-md">
       {element.title && (
         <div className="w-full border-b border-solid border-gray-500">
           <p className="p-4">{element.title}</p>
