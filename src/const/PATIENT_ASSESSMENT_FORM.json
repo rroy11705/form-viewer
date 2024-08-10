@@ -346,49 +346,62 @@
       "title": "Symptoms",
       "elements": [
         {
-          "type": "tagbox",
           "name": "symptoms",
-          "title": "Please select any symptoms you have now or have had in the past month.",
-          "choices": [
-            "Fever",
-            "Chills",
-            "Feeling poorly",
-            "Feeling tired",
-            "Weight gain",
-            "Weight loss",
-            "Chest pain",
-            "Heart pounding",
-            "Fast pulse",
-            "Slow pulse",
-            "Leg pain with exercise",
-            "Leg swelling",
-            "Joint pain",
-            "Neck pain",
-            "Joint swelling",
-            "Joint stiffness",
-            "Muscle aches",
-            "Back pain",
-            "Sores",
-            "Rash",
-            "Itching",
-            "Change in a mole",
-            "Unusual growth/spot"
+          "type": "panel",
+          "elements": [
+            {
+              "type": "dropdown",
+              "name": "symptoms",
+              "title": "Please select any symptoms you have now or have had in the past month.",
+              "choices": [
+                "Fever",
+                "Chills",
+                "Feeling poorly",
+                "Feeling tired",
+                "Weight gain",
+                "Weight loss",
+                "Chest pain",
+                "Heart pounding",
+                "Fast pulse",
+                "Slow pulse",
+                "Leg pain with exercise",
+                "Leg swelling",
+                "Joint pain",
+                "Neck pain",
+                "Joint swelling",
+                "Joint stiffness",
+                "Muscle aches",
+                "Back pain",
+                "Sores",
+                "Rash",
+                "Itching",
+                "Change in a mole",
+                "Unusual growth/spot"
+              ]
+            }
           ]
         },
         {
-          "type": "signaturepad",
-          "name": "signature",
-          "title": "Signature:",
-          "titleLocation": "left"
-        },
-        {
-          "type": "text",
-          "name": "current-date",
-          "title": "Today's date:",
-          "titleLocation": "left",
-          "inputType": "date",
-          "defaultValueExpression": "today()",
-          "startWithNewLine": false
+          "name": "Concent",
+          "type": "panel",
+          "elements": [
+            {
+              "type": "file",
+              "name": "signature",
+              "title": "Signature:",
+              "titleLocation": "left",
+              "span": "6/12"
+            },
+            {
+              "type": "date",
+              "name": "current-date",
+              "title": "Today's date:",
+              "titleLocation": "left",
+              "inputType": "date",
+              "defaultValueExpression": "today()",
+              "span": "6/12"
+            }
+          ]
         }
       ]
     }
