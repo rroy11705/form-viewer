@@ -42,7 +42,7 @@ const Select = React.forwardRef(
           </label>
         )}
         <select
-          className="flex flex-row justify-between border w-full rounded-md focus:ring-blue-500 focus:border-blue-500 p-2"
+          className="flex flex-row justify-between border w-full text-black rounded-md focus:ring-blue-500 focus:border-blue-500 p-2"
           onChange={onChange}
           onBlur={onBlur}
           placeholder={placeholder}
@@ -52,10 +52,10 @@ const Select = React.forwardRef(
           {options.map((option, index) => (
             <option
               key={index}
-              className="custom-select-option"
-              onClick={() => handleSelectChange(option.value)}
+              className="text-black"
+              onClick={() => handleSelectChange(option?.value ?? value)}
             >
-              {option.text}
+              {option.text ?? option}
             </option>
           ))}
         </select>
