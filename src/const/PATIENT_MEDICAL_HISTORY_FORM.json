@@ -33,7 +33,8 @@
               "name": "socialsecurity",
               "title": "Social Security #:",
               "isRequired": true,
-              "inputFormat": "999-99-9999"
+              "inputFormat": "999-99-9999",
+              "span": "6/12"
             },
             {
               "type": "text",
@@ -41,7 +42,8 @@
               "isRequired": true,
               "name": "birthDate",
               "startWithNewLine": false,
-              "title": "Date of birth:"
+              "title": "Date of birth:",
+              "span": "6/12"
             },
             {
               "type": "radiogroup",
@@ -84,7 +86,8 @@
               "isRequired": true,
               "name": "completedBy",
               "otherText": "Other (specify)",
-              "title": "Who completed this form:"
+              "title": "Who completed this form:",
+              "span": "6/12"
             },
             {
               "type": "text",
@@ -92,7 +95,8 @@
               "visibleIf": "{completedBy} != \"patient\"",
               "startWithNewLine": false,
               "title": "Name (if other than patient):",
-              "isRequired": true
+              "isRequired": true,
+              "span": "6/12"
             }
           ],
           "title": "Completed By"
