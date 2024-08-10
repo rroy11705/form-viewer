@@ -2,6 +2,7 @@ import FormViewer from './components/common/FormViewer';
 import json from './const/PATIENT_MEDICAL_HISTORY_FORM.json';
 import { useForm, FormProvider } from 'react-hook-form';
 import TextArea from './components/forms/TextArea';
+import FileSelector from './components/forms/FileUpload';
 
 function App() {
   const methods = useForm({
@@ -21,7 +22,7 @@ function App() {
       <FormViewer model={json} />
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <TextArea
+          {/* <TextArea
             id="myTextarea"
             name="myTextarea"
             label="My Textarea"
@@ -37,7 +38,8 @@ function App() {
             showErrorIcon={true}
             showSuccessIcon={true}
             helperText="This field is required and should be between 10 and 100 characters."
-          />
+          /> */}
+          <FileSelector />
 
           <button type="submit">Submit</button>
         </form>
