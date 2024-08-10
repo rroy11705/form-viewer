@@ -169,6 +169,7 @@ export const renderElement = element => {
           visibleIf={element.visibleIf}
         />
       );
+
     default:
       return null;
   }
