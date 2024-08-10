@@ -159,6 +159,7 @@ export const renderElement = element => {
           options={element.choices}
         />
       );
+
     default:
       return null;
   }
