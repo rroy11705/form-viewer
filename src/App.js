@@ -3,6 +3,8 @@ import json from './const/PATIENT_MEDICAL_HISTORY_FORM.json';
 import { useForm, FormProvider } from 'react-hook-form';
 import SelectField from './components/forms/Select/index';
 import TextField from '../src/components/forms/InputField/index';
+import RadioGroup from './components/forms/RadioGroup';
+import CheckBox from './components/forms/CheckBox.js';
 
 function App() {
   // const methods = useForm();
@@ -11,6 +13,20 @@ function App() {
     { label: 'Option 1', value: 'option1' },
     { label: 'Option 2', value: 'option2' },
     { label: 'Option 3', value: 'option3' },
+  ];
+
+  const radioGroupOptions = [
+    'first',
+    'second',
+    'third',
+    'fourth',
+    'fifth',
+    'sixth',
+    'seven',
+    'eight',
+    'nine',
+    'ten',
+    'eleven',
   ];
   const methods = useForm({
     defaultValues: {
@@ -93,6 +109,20 @@ function App() {
             searchInputPlaceholder={`Search for options`}
             clearSelectionButton={true}
             endIcon={<span>▼</span>}
+          />
+          <RadioGroup
+            label={radioGroupOptions}
+            disabled={false}
+            direction={'column'}
+            helpereText={'This is helper text'}
+            required={false}
+          />
+          <CheckBox
+            label={radioGroupOptions}
+            disabled={false}
+            direction={'row'}
+            helpereText={'This is helper text'}
+            required={true}
           />
 
           <button type="submit">Submit</button>

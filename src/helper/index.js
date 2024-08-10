@@ -79,11 +79,11 @@ export const buildValidationSchema = data => {
         default:
           break;
       }
-      if (element.isRequired) {
-        schema[element.name] = schema[element.name].required(
-          `${element.title ?? element.name} is required.`,
-        );
-      }
+      // if (element.isRequired) {
+      //   schema[element.name] = schema[element.name].required(
+      //     `${element.title ?? element.name} is required.`,
+      //   );
+      // }
       if (element.validators) {
         element.validators.forEach(validator => {
           if (validator.type === 'regex') {
