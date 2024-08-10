@@ -382,8 +382,7 @@
               "name": "schoolYearsCompleted",
               "title": "How many yeas of school have you completed?",
               "isRequired": true,
-              "choicesMin": 0,
-              "choicesMax": 12
+              "choices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
             }
           ],
           "title": "Education"
@@ -399,19 +398,6 @@
               "isRequired": true,
               "name": "employmentStatus",
               "title": "Your current employment status:"
-            },
-            {
-              "type": "text",
-              "name": "currentOcupation",
-              "visible": false,
-              "visibleIf": "{employmentStatus} = 'Employed'",
-              "title": "Current Ocupation(s):",
-              "isRequired": true
-            },
-            {
-              "type": "comment",
-              "name": "previousOccupations",
-              "title": "Previous Occupations/Jobs:"
             }
           ],
           "title": "Occupations"
@@ -529,7 +515,7 @@
               "title": "Are you currently married?"
             },
             {
-              "type": "text",
+              "type": "number",
               "name": "currentMarriageYear",
               "visible": false,
               "visibleIf": "{currentlyMarried} = 'Yes'",
@@ -616,21 +602,8 @@
           "choices": ["Yes", "No"],
           "colCount": 0,
           "name": "adopted",
+          "isRequired": true,
           "title": "Are you adopted?"
-        },
-        {
-          "type": "html",
-          "name": "adoptedInfo",
-          "visible": false,
-          "visibleIf": "{adopted} = 'Yes'",
-          "html": "If known, complete the following information about your <b>blood</b> relatives (include children).  Exclude adoptive parents, siblings and   adopted children."
-        },
-        {
-          "type": "html",
-          "name": "nonAdoptedInfo",
-          "visible": false,
-          "visibleIf": "{adopted} = 'No'",
-          "html": "Complete the following information about your <b>blood</b> relatives.  Exclude adoptive siblings and adopted children. "
         },
         {
           "type": "panel",
@@ -642,97 +615,15 @@
               "type": "dropdown",
               "name": "relativeType",
               "title": "Blood Relative:",
-              "isRequired": true,
               "choices": ["Father", "Mother", "Brother", "Sister", "Son", "Daughter"]
             },
             {
               "type": "radiogroup",
               "choices": ["Alive", "Deceased", "Unknown"],
               "colCount": 0,
-              "isRequired": true,
               "name": "relativeStatus",
               "startWithNewLine": false,
               "title": "Is he/she:"
-            },
-            {
-              "type": "text",
-              "name": "relativeAge",
-              "visible": false,
-              "visibleIf": "{panel.relativeStatus} = 'Alive'",
-              "startWithNewLine": false,
-              "title": "Current age:",
-              "isRequired": true
-            },
-            {
-              "type": "text",
-              "name": "relativeAgeOfDeath",
-              "visible": false,
-              "visibleIf": "{panel.relativeStatus} = 'Deceased'",
-              "startWithNewLine": false,
-              "title": "Age of death:",
-              "isRequired": true
-            },
-            {
-              "type": "panel",
-              "name": "relativeDeathInfo",
-              "elements": [
-                {
-                  "type": "radiogroup",
-                  "choices": ["Known", "Unknown"],
-                  "colCount": 0,
-                  "isRequired": true,
-                  "name": "relativeCauseOfDeath",
-                  "title": "Cause of death:"
-                },
-                {
-                  "type": "comment",
-                  "isRequired": true,
-                  "name": "relativeCauseOfDeathDescription",
-                  "title": "Description:",
-                  "visible": false,
-                  "visibleIf": "{panel.relativeCauseOfDeath} = 'Known'"
-                }
-              ],
-              "visible": false,
-              "visibleIf": "{panel.relativeStatus} = 'Deceased'"
-            },
-            {
-              "type": "matrixdynamic",
-              "name": "relativeCondition",
-              "title": "Describe the illness or conditios",
-              "titleLocation": "top",
-              "columns": [
-                {
-                  "name": "name",
-                  "title": "Illness/Condition",
-                  "choices": [
-                    "Cancer",
-                    "Heart Disease",
-                    "Diabetes",
-                    "Stroke/TIA",
-                    "High Blood Pressure",
-                    "High Cholesterol or Triglycerides",
-                    "Liver Disease",
-                    "Alcohol or Drug Abuse",
-                    "Anxiety, Depression or Psychiatric Illness",
-                    "Tuberculosis",
-                    "Anesthesia Complications",
-                    "Genetic Disorder",
-                    "Other"
-                  ],
-                  "cellType": "dropdown",
-                  "isRequired": true
-                },
-                {
-                  "name": "description",
-                  "title": "Describe",
-                  "cellType": "comment",
-                  "isRequired": true
-                }
-              ],
-              "choices": [1, 2, 3, 4, 5],
-              "rowCount": 1,
-              "addRowText": "Add illness"
             }
           ],
           "panelCount": 1,

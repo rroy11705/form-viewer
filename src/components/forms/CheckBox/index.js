@@ -61,7 +61,7 @@ const CheckBox = ({
                         type="checkbox"
                         value={elem.value ?? elem}
                         name={name}
-                        checked={value?.includes(elem.value)}
+                        checked={value?.includes(elem.value ?? elem)}
                         onChange={() => null}
                         disabled={disabled}
                         className={`w-4 h-4 text-blue-600 bg-white border-gray-300 rounded focus:!ring-none  !ring-none`}

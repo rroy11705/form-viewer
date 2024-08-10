@@ -205,11 +205,13 @@ export const buildValidationSchema = data => {
         case 'date':
         case 'radiogroup':
         case 'file':
+        case 'dropdown':
           schema[element.name] = yup.string();
           break;
         case 'checkbox':
-        default:
           schema[element.name] = yup.array().of(yup.string());
+          break;
+        default:
           break;
       }
       if (element.isRequired) {

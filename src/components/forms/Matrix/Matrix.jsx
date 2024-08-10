@@ -2,9 +2,20 @@ import React, { useEffect } from 'react';
 import Radio from '../RadioGroup/radio';
 import { spanMap } from '../../../helper';
 
-const SimpleMatrix = ({ id, type, required, columns, isAllRowRequired, name, rows, label }) => {
+const SimpleMatrix = ({
+  id,
+  type,
+  required,
+  columns,
+  isAllRowRequired,
+  name,
+  rows,
+  label,
+  value,
+  onChange,
+}) => {
   return (
-    <div className="flex flex-col w-full gap-3">
+    <div id={id} className="flex flex-col w-full gap-3">
       {label && (
         <>
           <div className="pb-4 pt-7 px-3">
@@ -39,6 +50,8 @@ const SimpleMatrix = ({ id, type, required, columns, isAllRowRequired, name, row
                     name={row}
                     span={'1/12'}
                     margin="auto"
+                    onChange={onChange}
+                    value={(value && value[row]) ?? ''}
                   />
                 </div>
               );
