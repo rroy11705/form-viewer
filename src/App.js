@@ -1,4 +1,5 @@
 import FormViewer from './components/common/FormViewer';
+import Matrix from './components/forms/Matrix/Matrix';
 import json from './const/PATIENT_ASSESSMENT_FORM.json';
 import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
@@ -27,6 +28,14 @@ function App() {
         </Routes>
       </Suspense>
       {/* <FormViewer model={json} /> */}
+      <FormViewer model={json} />
+      <Matrix
+        columns={['No', 'Yes']}
+        isAllRowRequired={true}
+        name={'performingActivities'}
+        rows={['Eating', 'Bathing', 'Dressing', 'Walking', 'Using Toilet', 'Housekeeping']}
+        label={'Do you have difficulty performing these activities by YOURSELF?'}
+      />
     </div>
   );
 }

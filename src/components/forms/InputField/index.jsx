@@ -1,8 +1,7 @@
-import React, { useEffect, forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import InputField from './input';
-
-const DEFAULT_VALUE = '';
+import { VisibleIfRegex } from '../../../helper';
 
 const TextField = (
   {
@@ -10,7 +9,6 @@ const TextField = (
     type = 'text',
     label,
     name,
-    value = DEFAULT_VALUE,
     onChange,
     onBlur,
     required,
@@ -31,66 +29,67 @@ const TextField = (
     pattern,
     readOnly,
     span,
+    visibleIf,
   },
   ref,
 ) => {
   const {
     control,
-    setValue,
+    watch,
     formState: { errors },
   } = useFormContext();
 
-  useEffect(() => {
-    if (value && value !== DEFAULT_VALUE) {
-      setValue(name, value);
-    } else if (value === DEFAULT_VALUE) {
-      setValue(name, '');
-    }
-  }, [value, setValue, name]);
+  const visibleIfMatch = visibleIf?.match(VisibleIfRegex);
 
-  return (
-    <Controller
-      name={name}
-      control={control}
-      render={({ field: { ref, value, onBlur: defaultOnBlur, onChange: defaultOnChange } }) => (
-        <InputField
-          ref={ref}
-          id={id}
-          type={type}
-          label={label}
-          name={name}
-          value={value}
-          required={required}
-          placeholder={placeholder}
-          disabled={disabled}
-          startIcon={startIcon}
-          endIcon={endIcon}
-          color={color}
-          error={errors[name]?.message}
-          success={success}
-          showErrorIcon={showErrorIcon}
-          showSuccessIcon={showSuccessIcon}
-          helperText={helperText}
-          iconInfo={iconInfo}
-          maxLength={maxLength}
-          minLength={minLength}
-          onKeyDown={onKeyDown}
-          autoFocus={autoFocus}
-          pattern={pattern}
-          readOnly={readOnly}
-          onChange={e => {
-            defaultOnChange(e);
-            onChange && onChange(e);
-          }}
-          onBlur={e => {
-            defaultOnBlur(e);
-            onBlur && onBlur(e);
-          }}
-          span={span}
-        />
-      )}
-    />
-  );
+  if (!visibleIf || (visibleIfMatch && watch(visibleIfMatch[1]) === visibleIfMatch[2]))
+    return (
+      <Controller
+        name={name}
+        control={control}
+        render={({
+          field: { ref, value: inputValue, onBlur: defaultOnBlur, onChange: defaultOnChange },
+        }) => {
+          return (
+            <InputField
+              ref={ref}
+              id={id}
+              type={type}
+              label={label}
+              name={name}
+              value={inputValue}
+              required={required}
+              placeholder={placeholder}
+              disabled={disabled}
+              startIcon={startIcon}
+              endIcon={endIcon}
+              color={color}
+              error={errors[name]?.message}
+              success={success}
+              showErrorIcon={showErrorIcon}
+              showSuccessIcon={showSuccessIcon}
+              helperText={helperText}
+              iconInfo={iconInfo}
+              maxLength={maxLength}
+              minLength={minLength}
+              onKeyDown={onKeyDown}
+              autoFocus={autoFocus}
+              pattern={pattern}
+              readOnly={readOnly}
+              onChange={e => {
+                defaultOnChange(e);
+                onChange && onChange(e);
+              }}
+              onBlur={e => {
+                defaultOnBlur(e);
+                onBlur && onBlur(e);
+              }}
+              span={span}
+            />
+          );
+        }}
+      />
+    );
+  return null;
 };
 
 export default forwardRef(TextField);

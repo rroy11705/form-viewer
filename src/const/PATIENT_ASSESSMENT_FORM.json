@@ -39,7 +39,7 @@
               "validators": [
                 {
                   "type": "regex",
-                  "text": "Your SSN must be a 9-digit number",
+                  "text": "Your SSN must be a 9-digit number and of format AAA-GG-SSSS",
                   "regex": "^(?!0{3})(?!6{3})[0-8]\\d{2}-?(?!0{2})\\d{2}-?(?!0{4})\\d{4}$"
                 }
               ],

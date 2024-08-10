@@ -11,7 +11,6 @@ const DateInput = ({
   label,
   name,
   value,
-  error,
   autoFocus,
   success,
   onChange,
@@ -24,26 +23,20 @@ const DateInput = ({
 }) => {
   const {
     control,
-    setValue,
     formState: { errors },
   } = useFormContext();
-  useEffect(() => {
-    if (value && value !== DEFAULT_VALUE) {
-      setValue(name, value);
-    } else if (value === DEFAULT_VALUE) {
-      setValue(name, undefined);
-    }
-  }, [value, setValue, name]);
   return (
     <Controller
       name={name}
       control={control}
       render={({ field: { ref, value, onBlur: defaultOnBlur, onChange: defaultOnChange } }) => {
+        const error = errors[name]?.message;
         return (
-          <div className="flex flex-col gap-3 mb-6" style={{ width: spanMap(span) }}>
+          <div className="relative flex flex-col gap-3 mb-6" style={{ width: spanMap(span) }}>
             {label && (
               <label htmlFor={id} className="block mb-2 text-sm font-medium text-gray-900">
                 {label}
+                {required && <span className="text-red-700"> *</span>}
               </label>
             )}
             <div className="relative">
@@ -55,14 +48,19 @@ const DateInput = ({
                   success ? ' success' : ''
                 }`}
                 placeholder={placeholder}
-                onChange={onChange}
-                value={value}
+                onChange={defaultOnChange}
+                onBlur={defaultOnBlur}
+                value={value ?? DEFAULT_VALUE}
                 autoFocus={autoFocus}
                 disabled={disabled}
-                required={required}
-                errors={errors}
               />
             </div>
+            {(error || success) && (
+              <div className="absolute top-full">
+                {error ? <span className="text-error">{error}</span> : null}
+                {success ? <span className="text-success">{success}</span> : null}
+              </div>
+            )}
           </div>
         );
       }}
