@@ -201,14 +201,15 @@ export const buildValidationSchema = data => {
         }
         case 'text':
         case 'number':
-        case 'checkbox':
         case 'boolean':
         case 'date':
         case 'radiogroup':
         case 'file':
           schema[element.name] = yup.string();
           break;
+        case 'checkbox':
         default:
+          schema[element.name] = yup.array().of(yup.string());
           break;
       }
       if (element.isRequired) {
@@ -229,8 +230,6 @@ export const buildValidationSchema = data => {
     });
 
   createSchema(data?.elements);
-
-  console.log('schema', schema);
 
   return yup.object().shape(schema);
 };
