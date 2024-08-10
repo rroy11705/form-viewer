@@ -118,6 +118,7 @@ export const renderElement = element => {
           placeholder={element.placeholder}
           name={element.name}
           label={element.title}
+          labelPosition={element.labelPosition}
           span={element.span}
         />
       );

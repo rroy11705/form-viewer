@@ -44,6 +44,7 @@ const DateInput = ({
             {label && (
               <label htmlFor={id} className="block mb-2 text-sm font-medium text-gray-900">
                 {label}
+                {required && <span className="text-red-700"> *</span>}
               </label>
             )}
             <div className="relative">
@@ -55,14 +56,20 @@ const DateInput = ({
                   success ? ' success' : ''
                 }`}
                 placeholder={placeholder}
-                onChange={onChange}
+                onChange={defaultOnChange}
+                onBlur={defaultOnBlur}
                 value={value}
                 autoFocus={autoFocus}
                 disabled={disabled}
-                required={required}
                 errors={errors}
               />
             </div>
+            {(error || success) && (
+              <div className="custom-textfield-helper">
+                {error ? <span className="text-error">{error}</span> : null}
+                {success ? <span className="text-success">{success}</span> : null}
+              </div>
+            )}
           </div>
         );
       }}
