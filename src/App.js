@@ -24,13 +24,6 @@ function App() {
           <Route path="*" element={<Navigate to="/home" />} />
         </Routes>
       </Suspense>
-      {/* <Matrix
-        columns={['No', 'Yes']}
-        isAllRowRequired={true}
-        name={'performingActivities'}
-        rows={['Eating', 'Bathing', 'Dressing', 'Walking', 'Using Toilet', 'Housekeeping']}
-        label={'Do you have difficulty performing these activities by YOURSELF?'}
-      /> */}
     </div>
   );
 }
