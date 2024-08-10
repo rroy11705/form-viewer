@@ -30,7 +30,7 @@ const FormStepper = ({ details = [], page = 0, onPageChange }) => {
               }`}
               onClick={() => onPageChange(i)}
             >
-              <span class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-800">
+              <span className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-800">
                 <span
                   className={`h-8 w-8 rounded-full cursor-pointer flex items-center justify-center ${
                     page > i

@@ -65,49 +65,43 @@
       ]
     },
     {
-      "name": "Health history",
-      "title": "Health history",
+      "name": "Patient History",
+      "title": "Patient History",
       "elements": [
         {
           "type": "panel",
-          "name": "health-history",
+          "name": "history",
           "elements": [
             {
-              "type": "boolean",
-              "name": "diabetes",
-              "title": "Do you have diabetes?",
-              "startWithNewLine": false
+              "type": "panel",
+              "name": "health-history",
+              "elements": [
+                {
+                  "type": "boolean",
+                  "name": "diabetes",
+                  "title": "Do you have diabetes?",
+                  "startWithNewLine": false
+                },
+                {
+                  "type": "boolean",
+                  "name": "high-blood-pressure",
+                  "title": "High blood pressure?",
+                  "startWithNewLine": false
+                },
+                {
+                  "type": "boolean",
+                  "name": "high-cholesterol",
+                  "title": "High cholesterol?",
+                  "startWithNewLine": false
+                },
+                {
+                  "type": "comment",
+                  "name": "other-health-conditions",
+                  "title": "Do you have other health conditions?",
+                  "maxLength": 300
+                }
+              ]
             },
-            {
-              "type": "boolean",
-              "name": "high-blood-pressure",
-              "title": "High blood pressure?",
-              "startWithNewLine": false
-            },
-            {
-              "type": "boolean",
-              "name": "high-cholesterol",
-              "title": "High cholesterol?",
-              "startWithNewLine": false
-            },
-            {
-              "type": "comment",
-              "name": "other-health-conditions",
-              "title": "Do you have other health conditions?",
-              "maxLength": 300
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Social history",
-      "title": "Social history",
-      "elements": [
-        {
-          "type": "panel",
-          "name": "social-history",
-          "elements": [
             {
               "type": "panel",
               "name": "smoking",
@@ -120,8 +114,7 @@
                     { "value": "never", "text": "Never" },
                     { "value": "yes", "text": "Yes" },
                     { "value": "quit", "text": "Quit" }
-                  ],
-                  "span": "6/12"
+                  ]
                 },
                 {
                   "type": "text",
@@ -129,28 +122,7 @@
                   "visibleIf": "{cigarettes} = 'yes'",
                   "title": "How many packs a day?",
                   "inputType": "number",
-                  "min": 0,
-                  "span": "6/12"
-                },
-                {
-                  "type": "multipletext",
-                  "name": "smoking-history",
-                  "visibleIf": "{cigarettes} = 'quit'",
-                  "titleLocation": "hidden",
-                  "items": [
-                    {
-                      "name": "date-quit",
-                      "title": "Date quit",
-                      "inputType": "date",
-                      "maxValueExpression": "today()"
-                    },
-                    {
-                      "name": "years-smoked",
-                      "title": "Years smoked",
-                      "inputType": "number",
-                      "min": 0
-                    }
-                  ]
+                  "min": 0
                 },
                 {
                   "type": "boolean",
@@ -223,7 +195,8 @@
                       "value": "post-graduate",
                       "text": "Post-graduate degree(s)"
                     }
-                  ]
+                  ],
+                  "span": "6/12"
                 },
                 {
                   "type": "dropdown",
@@ -236,7 +209,8 @@
                     { "value": "separated", "text": "Separated" },
                     { "value": "single", "text": "Single" },
                     { "value": "widow", "text": "Widow(er)" }
-                  ]
+                  ],
+                  "span": "6/12"
                 },
                 {
                   "type": "panel",
@@ -358,170 +332,6 @@
                           "title": "Their ages"
                         }
                       ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Surgical history / recent hospitalizations",
-      "title": "Surgical history / recent hospitalizations",
-      "elements": [
-        {
-          "type": "comment",
-          "name": "surgery-description",
-          "title": "Date and type of surgery / procedure"
-        }
-      ]
-    },
-    {
-      "name": "Family history",
-      "title": "Family history",
-      "elements": [
-        {
-          "type": "matrixdynamic",
-          "name": "family-history",
-          "cellType": "text",
-          "titleLocation": "hidden",
-          "columns": [
-            {
-              "name": "relation",
-              "title": "Relation"
-            },
-            {
-              "name": "health-conditions",
-              "title": "Health conditions"
-            },
-            {
-              "name": "cancer-history",
-              "title": "Family history of cancer"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Preventive care",
-      "title": "Preventive care",
-      "elements": [
-        {
-          "type": "panel",
-          "name": "preventive-care",
-          "elements": [
-            {
-              "type": "panel",
-              "name": "recent-shots-panel",
-              "elements": [
-                {
-                  "type": "matrixdropdown",
-                  "name": "recent-shots",
-                  "title": "Recent shots from a doctor or pharmacist",
-                  "cellType": "text",
-                  "columns": [
-                    { "name": "date", "title": "Date" },
-                    { "name": "place", "title": "Place" }
-                  ],
-                  "rows": [
-                    { "value": "flu", "text": "Flu" },
-                    { "value": "shingles", "text": "Shingles" },
-                    { "value": "pneumonia", "text": "Pneumonia" },
-                    { "value": "tetanus", "text": "Tetanus" },
-                    { "value": "other", "text": "Other" }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "panel",
-              "name": "recent-tests-panel",
-              "startWithNewLine": false,
-              "elements": [
-                {
-                  "type": "matrixdropdown",
-                  "name": "recent-tests",
-                  "title": "Recent tests or procedures",
-                  "cellType": "text",
-                  "columns": [
-                    { "name": "date", "title": "Date" },
-                    { "name": "place", "title": "Place" }
-                  ],
-                  "rows": [
-                    { "value": "colonoscopy", "text": "Colonoscopy" },
-                    { "value": "cologuard", "text": "Cologuard" },
-                    { "value": "mammogram", "text": "Mammogram" },
-                    { "value": "pap", "text": "PAP" },
-                    { "value": "other", "text": "Other" }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "panel",
-              "name": "specialists-panel",
-              "elements": [
-                {
-                  "type": "matrixdynamic",
-                  "name": "specialists",
-                  "title": "Specialists",
-                  "cellType": "text",
-                  "columns": [
-                    {
-                      "name": "provider",
-                      "title": "Provider's first and last name"
-                    },
-                    {
-                      "name": "speciality",
-                      "title": "Speciality"
-                    },
-                    {
-                      "name": "city",
-                      "title": "Town/City"
-                    }
-                  ],
-                  "rowCount": 1
-                }
-              ]
-            },
-            {
-              "type": "panel",
-              "name": "medications-and-allergies",
-              "elements": [
-                {
-                  "type": "multipletext",
-                  "name": "medications",
-                  "title": "Medications",
-                  "items": [
-                    {
-                      "name": "medication-name",
-                      "title": "Name"
-                    },
-                    {
-                      "name": "medication-dose",
-                      "title": "Dose"
-                    },
-                    {
-                      "name": "medication-times-per-day",
-                      "title": "Times per day"
-                    }
-                  ]
-                },
-                {
-                  "type": "multipletext",
-                  "name": "allergies",
-                  "startWithNewLine": false,
-                  "title": "Allergies",
-                  "items": [
-                    {
-                      "name": "allergy-type",
-                      "title": "Type"
-                    },
-                    {
-                      "name": "allergy-reaction",
-                      "title": "Reaction"
                     }
                   ]
                 }

@@ -2,7 +2,8 @@ import Panel from '../components/common/Panel';
 import * as yup from 'yup';
 import BooleanInput from '../components/forms/BooleanInput';
 import DateInput from '../components/forms/DateInput';
-import InputField from '../components/forms/InputField/input';
+import InputField from '../components/forms/InputField';
+import SelectField from '../components/forms/Select';
 import CheckBox from '../components/forms/CheckBox';
 import RadioGroup from '../components/forms/RadioGroup';
 
@@ -51,10 +52,7 @@ export const renderElement = element => {
   switch (element.type) {
     case 'panel':
       return <Panel element={element} />;
-    case 'text': {
-      console.log(element);
-
-      // return <div style={{ width: spanMap(element?.span) }}>{element.title}</div>;
+    case 'text':
       return (
         <InputField
           id={element.name}
@@ -66,18 +64,27 @@ export const renderElement = element => {
           span={element.span}
         />
       );
-    }
     case 'checkbox':
-      // return <div style={{ width: spanMap(element?.span) }}>{element.title}</div>;
-      console.log(element);
-      return <CheckBox options={element.choices} />;
+      return (
+        <CheckBox
+          id={element.name}
+          options={element.choices}
+          required={element.isRequired}
+          placeholder={element.placeholder}
+          name={element.name}
+          label={element.title}
+          span={element.span}
+          showNoneItem={element.showNoneItem}
+          showOtherItem={element.showOtherItem}
+          noneText={element.noneText}
+          otherText={element.otherText}
+        />
+      );
     case 'radiogroup':
-      // return <div style={{ width: spanMap(element?.span) }}>{element.title}</div>;
-      console.log(element);
       return (
         <RadioGroup
-          options={element.choices}
           id={element.name}
+          options={element.choices}
           required={element.isRequired}
           placeholder={element.placeholder}
           name={element.name}
@@ -97,6 +104,19 @@ export const renderElement = element => {
           name={element.name}
           label={element.title}
           span={element.span}
+        />
+      );
+    case 'dropdown':
+      return (
+        <SelectField
+          id={element.name}
+          type="select"
+          required={element.isRequired}
+          placeholder={element.placeholder}
+          name={element.name}
+          label={element.title}
+          span={element.span}
+          options={element.choices}
         />
       );
     default:

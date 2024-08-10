@@ -15,6 +15,10 @@ const CheckBox = props => {
     disabled,
     direction = 'row',
     span,
+    showNoneItem,
+    showOtherItem,
+    noneText,
+    otherText,
   } = props;
 
   return (
@@ -32,28 +36,66 @@ const CheckBox = props => {
       >
         {options?.map((elem, i) => {
           return (
-            <>
-              <div className={``}>
-                <input
-                  id={elem.value}
-                  type="checkbox"
-                  value={value}
-                  onChange={onChange}
-                  onBlur={onBlur}
-                  disabled={disabled}
-                  name="list-radio"
-                  className={`w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600`}
-                />
-                <label
-                  for={elem.value}
-                  className="w-full py-3 ms-2 text-sm font-medium text-black-900 dark:text-black-300"
-                >
-                  {elem?.text}
-                </label>
-              </div>
-            </>
+            <div key={elem.value} className={``}>
+              <input
+                id={elem.value}
+                type="checkbox"
+                value={value}
+                onChange={onChange}
+                onBlur={onBlur}
+                disabled={disabled}
+                name="list-radio"
+                className={`w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600`}
+              />
+              <label
+                htmlFor={elem.value}
+                className="w-full py-3 ms-2 text-sm font-medium text-black-900 dark:text-black-300"
+              >
+                {elem?.text}
+              </label>
+            </div>
           );
         })}
+        {showOtherItem && (
+          <div className={``}>
+            <input
+              id="other"
+              type="checkbox"
+              value="other"
+              onChange={onChange}
+              onBlur={onBlur}
+              disabled={disabled}
+              name="list-radio"
+              className={`w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600`}
+            />
+            <label
+              htmlFor="other"
+              className="w-full py-3 ms-2 text-sm font-medium text-black-900 dark:text-black-300"
+            >
+              {otherText}
+            </label>
+          </div>
+        )}
+        {showNoneItem && (
+          <div className={``}>
+            <input
+              id="none"
+              type="checkbox"
+              value="none"
+              onChange={onChange}
+              onBlur={onBlur}
+              disabled={disabled}
+              name="list-radio"
+              className={`w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600`}
+            />
+            <label
+              htmlFor="none"
+              className="w-full py-3 ms-2 text-sm font-medium text-black-900 dark:text-black-300"
+            >
+              {noneText}
+            </label>
+          </div>
+        )}
       </div>
       {error && helperText && (
         <p id="helper-text-explanation" className="mt-2 text-sm text-gray-500 dark:text-gray-400">

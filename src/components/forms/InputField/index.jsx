@@ -30,6 +30,7 @@ const TextField = (
     autoFocus,
     pattern,
     readOnly,
+    span,
   },
   ref,
 ) => {
@@ -84,6 +85,7 @@ const TextField = (
             defaultOnBlur(e);
             onBlur && onBlur(e);
           }}
+          span={span}
         />
       )}
     />

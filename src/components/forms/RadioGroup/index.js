@@ -32,27 +32,25 @@ const RadioGroup = props => {
       >
         {options.map((elem, i) => {
           return (
-            <>
-              <div className={``}>
-                <input
-                  id={elem?.value}
-                  type="radio"
-                  value={elem?.value}
-                  onChange={onChange}
-                  onBlur={onBlur}
-                  disabled={disabled}
-                  name="list-radio"
-                  className={`w-4 h-4 text-blue-600 bg-white border-gray-300 focus:ring-blue-500 rounded-full`}
-                />
-                <label
-                  for={elem?.value}
-                  class="w-full py-3 ms-2 text-sm font-medium text-black-900"
-                >
-                  {elem?.text}
-                  {required && <span className="text-red-700"> *</span>}
-                </label>
-              </div>
-            </>
+            <div key={elem.value} className={``}>
+              <input
+                id={elem?.value}
+                type="radio"
+                value={elem?.value}
+                onChange={onChange}
+                onBlur={onBlur}
+                disabled={disabled}
+                name="list-radio"
+                className={`w-4 h-4 text-blue-600 bg-white border-gray-300 focus:ring-blue-500 rounded-full`}
+              />
+              <label
+                htmlFor={elem?.value}
+                className="w-full py-3 ms-2 text-sm font-medium text-black-900"
+              >
+                {elem?.text}
+                {required && <span className="text-red-700"> *</span>}
+              </label>
+            </div>
           );
         })}
       </div>

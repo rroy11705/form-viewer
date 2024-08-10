@@ -1,6 +1,6 @@
 import React, { forwardRef, useEffect } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
-import CustomSelect from './CustomSelect';
+import Select from './select';
 
 const DEFAULT_VALUE = '';
 
@@ -69,6 +69,7 @@ const SelectField = (
     emptySearchComponent = null,
     emptyOptionsComponent = null,
     clearSelectionButton = false,
+    span,
   },
   ref,
 ) => {
@@ -92,7 +93,7 @@ const SelectField = (
       control={control}
       render={({ field: { ref, value, onBlur: defaultOnBlur, onChange: defaultOnChange } }) => {
         return (
-          <CustomSelect
+          <Select
             ref={ref}
             id={id}
             selectHeight={selectHeight}
@@ -128,6 +129,7 @@ const SelectField = (
             emptySearchComponent={emptySearchComponent}
             emptyOptionsComponent={emptyOptionsComponent}
             clearSelectionButton={clearSelectionButton}
+            span={span}
           />
         );
       }}
