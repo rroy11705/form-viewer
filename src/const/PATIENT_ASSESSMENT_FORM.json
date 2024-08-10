@@ -80,22 +80,22 @@
                   "type": "boolean",
                   "name": "diabetes",
                   "title": "Do you have diabetes?",
-                  "startWithNewLine": false
+                  "span": "4/12"
                 },
                 {
                   "type": "boolean",
                   "name": "high-blood-pressure",
                   "title": "High blood pressure?",
-                  "startWithNewLine": false
+                  "span": "4/12"
                 },
                 {
                   "type": "boolean",
                   "name": "high-cholesterol",
                   "title": "High cholesterol?",
-                  "startWithNewLine": false
+                  "span": "4/12"
                 },
                 {
-                  "type": "comment",
+                  "type": "textarea",
                   "name": "other-health-conditions",
                   "title": "Do you have other health conditions?",
                   "maxLength": 300
@@ -219,14 +219,16 @@
                     {
                       "type": "boolean",
                       "name": "sexually-active",
-                      "title": "Are you sexually active?"
+                      "title": "Are you sexually active?",
+                      "span": "6/12"
                     },
                     {
                       "type": "text",
                       "name": "sexual-partners-number",
                       "title": "How many sexual partners do you have?",
                       "inputType": "number",
-                      "min": 0
+                      "min": 0,
+                      "span": "6/12"
                     },
                     {
                       "type": "radiogroup",
@@ -237,7 +239,8 @@
                         { "value": "women", "text": "Women" },
                         { "value": "both", "text": "Both" }
                       ],
-                      "colCount": 3
+                      "colCount": 3,
+                      "span": "6/12"
                     },
                     {
                       "type": "radiogroup",

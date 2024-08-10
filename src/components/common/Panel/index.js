@@ -9,7 +9,7 @@ const Panel = ({ element }) => {
           <p className="p-4">{element.title}</p>
         </div>
       )}
-      <div className="w-full p-4 flex flex-row flex-wrap gap-3">
+      <div className="w-full p-4 flex flex-row flex-wrap items-end gap-3">
         {element?.elements?.map(detail => (
           <React.Fragment key={detail.name}>{renderElement(detail)}</React.Fragment>
         ))}

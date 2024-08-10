@@ -1,8 +1,9 @@
 import React from 'react';
+import { spanMap } from '../../../helper';
 
-const BooleanInput = ({ value, label, labelPosition = 'left' }) => {
+const BooleanInput = ({ value, label, labelPosition = 'left', span }) => {
   return (
-    <div>
+    <div className="relative flex flex-col gap-3 mb-6" style={{ width: spanMap(span) }}>
       <label className="inline-flex items-center cursor-pointer gap-3">
         {labelPosition === 'left' && (
           <span className="text-sm font-medium text-gray-900">{label}</span>

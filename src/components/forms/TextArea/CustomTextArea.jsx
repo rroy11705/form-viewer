@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+import { spanMap } from '../../../helper';
 
 const CustomTextArea = forwardRef(
   (
@@ -22,13 +23,14 @@ const CustomTextArea = forwardRef(
       helperText = '',
       maxLength = null,
       minLength = null,
+      span,
     },
     ref,
   ) => {
     return (
-      <div className={`textarea-field ${color ? `textarea-${color}` : ''}`}>
+      <div className="flex flex-col gap-3 mb-6" style={{ width: spanMap(span) }}>
         {label && (
-          <label htmlFor={id} className={required ? 'required' : ''}>
+          <label htmlFor={id} className="block mb-2 text-sm font-medium text-gray-900">
             {label}
           </label>
         )}
@@ -45,7 +47,7 @@ const CustomTextArea = forwardRef(
             disabled={disabled}
             maxLength={maxLength}
             minLength={minLength}
-            className={error ? 'error' : success ? 'success' : ''}
+            className={`w-full rounded-md ${error ? ' error' : ''}${success ? ' success' : ''}`}
             aria-invalid={!!error}
             aria-required={required}
           />
