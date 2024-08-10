@@ -2,7 +2,7 @@ import React from 'react';
 
 const FormSidebar = ({ details = [], page, onPageChange }) => {
   return (
-    <div className="min-w-56 p-4 h-full border-r border-solid border-gray-500 flex flex-col gap-4">
+    <div className="min-w-56 p-4 border-r border-solid border-gray-500 flex flex-col gap-4 overflow-y-auto">
       {details.map((x, i) => (
         <div
           onClick={() => onPageChange(i)}

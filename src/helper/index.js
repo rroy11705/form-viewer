@@ -2,6 +2,7 @@ import Panel from '../components/common/Panel';
 import * as yup from 'yup';
 import BooleanInput from '../components/forms/BooleanInput';
 import DateInput from '../components/forms/DateInput';
+import InputField from '../components/forms/InputField/input';
 
 export const spanMap = value => {
   switch (value) {
@@ -48,14 +49,38 @@ export const renderElement = element => {
   switch (element.type) {
     case 'panel':
       return <Panel element={element} />;
-    case 'text':
-      return <div style={{ width: spanMap(element?.span) }}>{element.title}</div>;
+    case 'text': {
+      console.log(element);
+
+      // return <div style={{ width: spanMap(element?.span) }}>{element.title}</div>;
+      return (
+        <InputField
+          id={element.name}
+          type="text"
+          required={element.isRequired}
+          placeholder={element.placeholder}
+          name={element.name}
+          label={element.title}
+          span={element.span}
+        />
+      );
+    }
     case 'radiogroup':
       return <div style={{ width: spanMap(element?.span) }}>{element.title}</div>;
     case 'boolean':
       return <BooleanInput value="" label={element.title} />;
     case 'date':
-      return <DateInput value="" label={element.title} />;
+      return (
+        <DateInput
+          id={element.name}
+          type="date"
+          required={element.isRequired}
+          placeholder={element.placeholder}
+          name={element.name}
+          label={element.title}
+          span={element.span}
+        />
+      );
     default:
       return null;
   }

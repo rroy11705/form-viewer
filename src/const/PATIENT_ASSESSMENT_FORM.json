@@ -15,6 +15,7 @@
               "type": "text",
               "name": "first-name",
               "title": "First name",
+              "placeholder": "Enter first name",
               "isRequired": true,
               "span": "6/12"
             },
@@ -23,6 +24,7 @@
               "name": "last-name",
               "startWithNewLine": false,
               "title": "Last name",
+              "placeholder": "Enter last name",
               "isRequired": true,
               "span": "6/12"
             },
@@ -33,6 +35,7 @@
               "requiredErrorText": "You SSN must be a 9-digit number.",
               "maxLength": 9,
               "isRequired": true,
+              "placeholder": "Enter social security number",
               "validators": [
                 {
                   "type": "regex",
@@ -49,7 +52,8 @@
               "title": "Date of birth",
               "isRequired": true,
               "inputType": "date",
-              "span": "6/12"
+              "span": "6/12",
+              "placeholder": "Select date of birth"
             },
             {
               "type": "text",

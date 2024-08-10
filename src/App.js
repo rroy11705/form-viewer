@@ -1,5 +1,5 @@
 import FormViewer from './components/common/FormViewer';
-import json from './const/PATIENT_MEDICAL_HISTORY_FORM.json';
+import json from './const/PATIENT_ASSESSMENT_FORM.json';
 import { useForm, FormProvider } from 'react-hook-form';
 import SelectField from './components/forms/Select/index';
 import TextField from '../src/components/forms/InputField/index';
@@ -60,7 +60,7 @@ function App() {
           />
         </form>
       </FormProvider> */}
-      <FormProvider {...methods}>
+      {/* <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <TextField
             id="username"
@@ -127,7 +127,7 @@ function App() {
 
           <button type="submit">Submit</button>
         </form>
-      </FormProvider>
+      </FormProvider> */}
     </div>
   );
 }
