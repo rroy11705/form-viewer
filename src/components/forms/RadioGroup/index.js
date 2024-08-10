@@ -1,4 +1,5 @@
 import React from 'react';
+import { spanMap } from '../../../helper';
 
 const RadioGroup = props => {
   const {
@@ -7,39 +8,47 @@ const RadioGroup = props => {
     onChange,
     onBlur,
     label,
+    options,
     required,
     error,
-    helpereText,
+    helperText,
     disabled,
-    placeholder,
-    onPaste,
-    direction,
+    direction = 'row',
+    span,
   } = props;
 
   return (
-    <>
+    <div className="flex flex-col gap-3 mb-6" style={{ width: spanMap(span) }}>
+      {label && (
+        <label htmlFor={id} className="block mb-2 text-sm font-medium text-gray-900">
+          {label}
+          {required && <span className="text-red-700"> *</span>}
+        </label>
+      )}
       <div
-        className={`${direction === 'row' ? 'flex gap-3' : 'block p-3 '}  ps-3 items-center w-full`}
+        className={`flex ${
+          direction === 'row' ? 'flex-row gap-3' : 'flex-col'
+        }  ps-3 items-start w-full`}
       >
-        {label.map((elem, i) => {
+        {options.map((elem, i) => {
           return (
             <>
               <div className={``}>
                 <input
-                  id={id}
+                  id={elem?.value}
                   type="radio"
-                  value={value}
+                  value={elem?.value}
                   onChange={onChange}
                   onBlur={onBlur}
                   disabled={disabled}
                   name="list-radio"
-                  className={`w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 focus:ring-2 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 dark:bg-gray-600 dark:border-gray-500 rounded-full`}
+                  className={`w-4 h-4 text-blue-600 bg-white border-gray-300 focus:ring-blue-500 rounded-full`}
                 />
                 <label
-                  for={id}
-                  class="w-full py-3 ms-2 text-sm font-medium text-black-900 dark:text-black-300"
+                  for={elem?.value}
+                  class="w-full py-3 ms-2 text-sm font-medium text-black-900"
                 >
-                  {elem}
+                  {elem?.text}
                   {required && <span className="text-red-700"> *</span>}
                 </label>
               </div>
@@ -47,12 +56,12 @@ const RadioGroup = props => {
           );
         })}
       </div>
-      {helpereText.length > 0 && (
+      {error && helperText > 0 && (
         <p id="helper-text-explanation" className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-          {helpereText}
+          {helperText}
         </p>
       )}
-    </>
+    </div>
   );
 };
 
