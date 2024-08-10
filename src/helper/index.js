@@ -9,6 +9,7 @@ import RadioGroup from '../components/forms/RadioGroup';
 import FileUpload from '../components/forms/FileUpload';
 import Textarea from '../components/forms/TextArea';
 import Matrix from '../components/forms/Matrix';
+import HTMLElement from '../components/forms/HTMLElement';
 
 export const VisibleIfRegex = /\{([^}]+)\}\s*=\s*'([^']+)'/;
 
@@ -70,6 +71,9 @@ export const renderElement = element => {
           label={element.title}
           span={element.span}
           visibleIf={element.visibleIf}
+          minWidth={element.minWidth}
+          maxWidth={element.maxWidth}
+          margin={element.margin}
         />
       );
     case 'textarea':
@@ -141,6 +145,9 @@ export const renderElement = element => {
           label={element.title}
           span={element.span}
           visibleIf={element.visibleIf}
+          maxWidth={element.maxWidth}
+          minWidth={element.minWidth}
+          margin={element.margin}
         />
       );
     case 'file':
@@ -182,6 +189,16 @@ export const renderElement = element => {
           label={element.title}
           isAllRowRequired={element.isAllRowRequired}
           name={element.name}
+        />
+      );
+    case 'html':
+      return (
+        <HTMLElement
+          id={element.name}
+          type={element.type}
+          html={element.html}
+          minWidth={element?.minWidth}
+          maxWidth={element?.maxWidth}
         />
       );
 

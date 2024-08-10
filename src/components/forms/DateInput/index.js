@@ -20,6 +20,10 @@ const DateInput = ({
   maxDate,
   minDate,
   required,
+  width,
+  minWidth,
+  maxWidth,
+  margin,
 }) => {
   const {
     control,
@@ -32,7 +36,10 @@ const DateInput = ({
       render={({ field: { ref, value, onBlur: defaultOnBlur, onChange: defaultOnChange } }) => {
         const error = errors[name]?.message;
         return (
-          <div className="relative flex flex-col gap-3 mb-6" style={{ width: spanMap(span) }}>
+          <div
+            className="relative flex flex-col gap-3 mb-6"
+            style={{ width: width ?? spanMap(span), maxWidth, minWidth, margin }}
+          >
             {label && (
               <label htmlFor={id} className="block mb-2 text-sm font-medium text-gray-900">
                 {label}

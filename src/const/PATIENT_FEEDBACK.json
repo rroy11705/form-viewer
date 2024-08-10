@@ -21,23 +21,19 @@
               "type": "text",
               "name": "doctors-name",
               "startWithNewLine": false,
-              "titleLocation": "hidden"
-            },
-            {
-              "type": "html",
-              "name": "date",
-              "minWidth": "70px",
+              "titleLocation": "hidden",
+              "minWidth": "250px",
               "maxWidth": "5%",
-              "startWithNewLine": false,
-              "html": "<p style=\"line-height: 32px;\">Date</p>\n"
+              "margin": 0
             },
+
             {
-              "type": "text",
+              "type": "date",
               "name": "date-picker",
               "minWidth": "250px",
               "maxWidth": "5%",
+              "margin": 0,
               "startWithNewLine": false,
-              "title": "Date",
               "titleLocation": "hidden",
               "inputType": "date"
             },
@@ -85,15 +81,6 @@
           "colCount": 3,
           "maxSelectedChoices": 6,
           "minSelectedChoices": 1
-        },
-        {
-          "type": "rating",
-          "name": "visit-importance",
-          "indent": 2,
-          "title": "On a scale of 1 to 5, how important to your health and wellbeing was your reason for visiting the doctor today?",
-          "rateType": "stars",
-          "minRateDescription": "Not very important",
-          "maxRateDescription": "Very important"
         },
         {
           "type": "matrix",
