@@ -72,7 +72,6 @@ const InputField = forwardRef(
             autoFocus={autoFocus}
             pattern={pattern}
             readOnly={readOnly}
-            required={required}
             className={`w-full rounded-md ${error ? ' error' : ''}${success ? ' success' : ''}`}
           />
           {endIcon && (

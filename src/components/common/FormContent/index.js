@@ -32,12 +32,36 @@ const FormContent = ({ model, page, methods, onPageChange }) => {
             ))}
           </div>
         </div>
-        {page > 0 ? <button onClick={() => onPageChange(page - 1)}>Previous</button> : null}
-        {model?.pages.length - 1 === page ? (
-          <button type="submit">Submit</button>
-        ) : (
-          <button type="submit">Next</button>
-        )}
+        <div
+          className="p-4 w-full"
+          style={{
+            maxWidth: model.widthMode === 'static' ? model.width : '100%',
+            margin: '0 auto',
+          }}
+        >
+          <div className="w-min ml-auto">
+            {page > 0 ? (
+              <button type="button" onClick={() => onPageChange(page - 1)}>
+                Previous
+              </button>
+            ) : null}
+            {model?.pages.length - 1 === page ? (
+              <button
+                type="submit"
+                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+              >
+                Submit
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+              >
+                Next
+              </button>
+            )}
+          </div>
+        </div>
       </form>
     </FormProvider>
   );
