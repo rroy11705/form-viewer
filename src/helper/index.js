@@ -3,6 +3,8 @@ import * as yup from 'yup';
 import BooleanInput from '../components/forms/BooleanInput';
 import DateInput from '../components/forms/DateInput';
 import InputField from '../components/forms/InputField/input';
+import CheckBox from '../components/forms/CheckBox';
+import RadioGroup from '../components/forms/RadioGroup';
 
 export const spanMap = value => {
   switch (value) {
@@ -65,8 +67,24 @@ export const renderElement = element => {
         />
       );
     }
+    case 'checkbox':
+      // return <div style={{ width: spanMap(element?.span) }}>{element.title}</div>;
+      console.log(element);
+      return <CheckBox options={element.choices} />;
     case 'radiogroup':
-      return <div style={{ width: spanMap(element?.span) }}>{element.title}</div>;
+      // return <div style={{ width: spanMap(element?.span) }}>{element.title}</div>;
+      console.log(element);
+      return (
+        <RadioGroup
+          options={element.choices}
+          id={element.name}
+          required={element.isRequired}
+          placeholder={element.placeholder}
+          name={element.name}
+          label={element.title}
+          span={element.span}
+        />
+      );
     case 'boolean':
       return <BooleanInput value="" label={element.title} />;
     case 'date':

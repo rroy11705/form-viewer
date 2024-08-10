@@ -47,7 +47,7 @@ function App() {
   };
   return (
     <div className="h-screen">
-      {/* <FormViewer model={json} /> */}
+      <FormViewer model={json} />
       {/* <PhoneInputField
         phoneNumber={phoneNumber}
         setPhoneNumber={setPhoneNumber}

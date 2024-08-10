@@ -47,6 +47,7 @@ const InputField = forwardRef(
         {label && (
           <label htmlFor={id} className="block mb-2 text-sm font-medium text-gray-900">
             {label}
+            {required && <span className="text-red-700"> *</span>}
           </label>
         )}
         <div className={`custom-textfield-wrapper${disabled ? ' disabled' : ''}`}>
