@@ -46,6 +46,7 @@ const Radio = ({
                 onBlur={onBlur}
                 disabled={disabled}
                 name={name}
+                checked={value === (elem?.value ?? elem)}
                 className={`w-4 h-4 text-blue-600 bg-white border-gray-300 focus:ring-blue-500 rounded-full`}
               />
               <label

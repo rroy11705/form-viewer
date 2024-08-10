@@ -3,12 +3,9 @@ import { Controller, useFormContext } from 'react-hook-form';
 import Radio from './radio';
 import { VisibleIfRegex } from '../../../helper';
 
-const DEFAULT_VALUE = null;
-
 const RadioGroup = ({
   id,
   name,
-  value = DEFAULT_VALUE,
   label,
   options,
   required,
@@ -31,7 +28,7 @@ const RadioGroup = ({
       <Controller
         name={name}
         control={control}
-        render={({ field: { onBlur: defaultOnBlur, onChange: defaultOnChange } }) => (
+        render={({ field: { value, onBlur: defaultOnBlur, onChange: defaultOnChange } }) => (
           <Radio
             id={id}
             name={name}
