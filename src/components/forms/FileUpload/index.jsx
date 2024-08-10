@@ -1,87 +1,87 @@
-import React, { useState, useCallback } from 'react';
+import React, { useEffect } from 'react';
+import { Controller, useFormContext } from 'react-hook-form';
+import FileSelector from './FileSelector';
 
-const FileSelector = () => {
-  const [files, setFiles] = useState([]);
-  const [dragging, setDragging] = useState(false);
+/**
+ * FileSelector field with form control.
+ *
+ * @param {string} id - The `id` of the file input element.
+ * @param {string} name - The `name` of the file input element.
+ * @param {string} label - The `label` for the file selector.
+ * @param {boolean} disabled - If `true`, the file selector will be disabled.
+ * @param {string} placeholder - The placeholder text displayed when no files are selected.
+ * @param {function} onChange - Function triggered when files are selected or removed.
+ * @param {function} onBlur - Function triggered when the file selector is blurred.
+ * @param {function} onDragOver - Function triggered when dragging files over the file selector.
+ * @param {function} onDragLeave - Function triggered when dragging leaves the file selector.
+ * @param {boolean} showErrorIcon - If `true`, an error icon will be shown.
+ * @param {string} error - Error message to display if there is an error.
+ * @param {boolean} required - If `true`, the file selector is required.
+ * @param {number} maxFiles - Maximum number of files that can be selected.
+ * @param {number} maxFileSize - Maximum file size in bytes.
+ * @param {Array<string>} allowedFileExtensions - Array of allowed file extensions.
+ * @returns {JSX.Element} The `FileSelector` component wrapped with a form controller.
+ */
+const FileUpload = ({
+  id = '',
+  name = '',
+  label = '',
+  disabled = false,
+  placeholder = 'Drag & Drop files here or click to select files',
+  onChange = () => null,
+  onBlur = () => null,
+  onDragOver = () => null,
+  onDragLeave = () => null,
+  showErrorIcon = false,
+  error = '',
+  required = false,
+  maxFiles = Infinity,
+  maxFileSize = Infinity,
+  allowedFileExtensions = [],
+}) => {
+  const {
+    control,
+    setValue,
+    formState: { errors },
+  } = useFormContext();
 
-  const handleDrop = useCallback(event => {
-    event.preventDefault();
-    setDragging(false);
-    const newFiles = Array.from(event.dataTransfer.files);
-    setFiles(prevFiles => [...prevFiles, ...newFiles]);
-  }, []);
-
-  const handleDragOver = event => {
-    event.preventDefault();
-    setDragging(true);
-  };
-
-  const handleDragLeave = () => {
-    setDragging(false);
-  };
-
-  const handleFileInputChange = event => {
-    if (event.target.files) {
-      const newFiles = Array.from(event.target.files);
-      setFiles(prevFiles => [...prevFiles, ...newFiles]);
+  useEffect(() => {
+    if (error) {
+      // Handle error state if needed
     }
-  };
-
-  const handleClick = () => {
-    document.getElementById('file-input').click();
-  };
-
-  const removeFile = id => {
-    const newFiles = files.filter((file, i) => i !== id);
-    setFiles(newFiles);
-  };
+  }, [error]);
 
   return (
-    <div
-      onDrop={handleDrop}
-      onDragOver={handleDragOver}
-      onDragLeave={handleDragLeave}
-      onClick={handleClick}
-      style={{
-        border: `2px dashed ${dragging ? 'green' : 'gray'}`,
-        borderRadius: '4px',
-        padding: '20px',
-        textAlign: 'center',
-        cursor: 'pointer',
-        position: 'relative',
-      }}
-    >
-      <input
-        id="file-input"
-        type="file"
-        multiple
-        style={{ display: 'none' }}
-        onChange={handleFileInputChange}
-      />
-      {files.length === 0 ? (
-        <p>Drag & Drop files here or click to select files</p>
-      ) : (
-        <div>
-          <p>Files selected:</p>
-          <ul>
-            {files.map((file, index) => (
-              <li key={index}>
-                {file.name}{' '}
-                <button
-                  onClick={e => {
-                    e.stopPropagation();
-                    removeFile(index);
-                  }}
-                >
-                  Remove
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
+    <Controller
+      name={name}
+      control={control}
+      render={({ field: { ref, onBlur: defaultOnBlur, onChange: defaultOnChange } }) => (
+        <FileSelector
+          id={id}
+          name={name}
+          label={label}
+          disabled={disabled}
+          placeholder={placeholder}
+          onChange={files => {
+            defaultOnChange(files);
+            onChange && onChange(files);
+          }}
+          onBlur={e => {
+            defaultOnBlur(e);
+            onBlur && onBlur(e);
+          }}
+          onDragOver={onDragOver}
+          onDragLeave={onDragLeave}
+          showErrorIcon={showErrorIcon}
+          error={errors[name]?.message || error}
+          required={required}
+          maxFiles={maxFiles}
+          maxFileSize={maxFileSize}
+          allowedFileExtensions={allowedFileExtensions}
+        />
       )}
-    </div>
+    />
   );
 };
 
-export default FileSelector;
+export default FileUpload;
