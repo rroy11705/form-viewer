@@ -54,11 +54,13 @@ export const renderElement = element => {
     case 'panel':
       return <Panel element={element} />;
     case 'text':
+    case 'number':
       return (
         <InputField
           id={element.name}
-          type="text"
+          type={element.type}
           required={element.isRequired}
+          maxLength={element.maxLength}
           placeholder={element.placeholder}
           name={element.name}
           label={element.title}
@@ -148,18 +150,22 @@ export const buildValidationSchema = data => {
           break;
         }
         case 'text':
+        case 'number':
+        case 'checkbox':
+        case 'boolean':
         case 'date':
         case 'radiogroup':
+        case 'file':
           schema[element.name] = yup.string();
           break;
         default:
           break;
       }
-      // if (element.isRequired) {
-      //   schema[element.name] = schema[element.name].required(
-      //     `${element.title ?? element.name} is required.`,
-      //   );
-      // }
+      if (element.isRequired) {
+        schema[element.name] = schema[element.name].required(
+          `${element.title ?? element.name} is required.`,
+        );
+      }
       if (element.validators) {
         element.validators.forEach(validator => {
           if (validator.type === 'regex') {
@@ -173,6 +179,8 @@ export const buildValidationSchema = data => {
     });
 
   createSchema(data?.elements);
+
+  console.log('schema', schema);
 
   return yup.object().shape(schema);
 };

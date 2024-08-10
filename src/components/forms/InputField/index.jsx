@@ -60,6 +60,7 @@ const TextField = (
           label={label}
           name={name}
           value={value}
+          required={required}
           placeholder={placeholder}
           disabled={disabled}
           startIcon={startIcon}

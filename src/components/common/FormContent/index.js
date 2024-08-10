@@ -32,6 +32,12 @@ const FormContent = ({ model, page, methods, onPageChange }) => {
             ))}
           </div>
         </div>
+        {page > 0 ? <button onClick={() => onPageChange(page - 1)}>Previous</button> : null}
+        {model?.pages.length - 1 === page ? (
+          <button type="submit">Submit</button>
+        ) : (
+          <button type="submit">Next</button>
+        )}
       </form>
     </FormProvider>
   );

@@ -29,7 +29,7 @@
               "span": "6/12"
             },
             {
-              "type": "text",
+              "type": "number",
               "name": "ssn",
               "title": "Social Security number",
               "requiredErrorText": "You SSN must be a 9-digit number.",
