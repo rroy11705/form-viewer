@@ -153,6 +153,7 @@ export const renderElement = element => {
           name={element.name}
           label={element.title}
           span={element.span}
+          maxFiles={1}
           // visibleIf={element.visibleIf}
         />
       );
