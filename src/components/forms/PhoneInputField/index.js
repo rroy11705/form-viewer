@@ -35,7 +35,7 @@ const PhoneInputField = props => {
           disabled={disabled}
           onChange={e => setPhoneNumber(e)}
         />
-        {helperText.length > 0 && (
+        {helperText?.length > 0 && (
           <p
             id="helper-text-explanation"
             className="mt-2 ml-3 text-sm text-gray-500 dark:text-gray-400"
