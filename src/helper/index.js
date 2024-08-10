@@ -7,7 +7,9 @@ import SelectField from '../components/forms/Select';
 import CheckBox from '../components/forms/CheckBox';
 import RadioGroup from '../components/forms/RadioGroup';
 import FileUpload from '../components/forms/FileUpload';
-import TextArea from '../components/forms/TextArea';
+import Textarea from '../components/forms/TextArea';
+
+export const VisibleIfRegex = /\{([^}]+)\}\s*=\s*'([^']+)'/;
 
 export const spanMap = value => {
   switch (value) {
@@ -66,11 +68,12 @@ export const renderElement = element => {
           name={element.name}
           label={element.title}
           span={element.span}
+          visibleIf={element.visibleIf}
         />
       );
     case 'textarea':
       return (
-        <TextArea
+        <Textarea
           id={element.name}
           type={element.type}
           required={element.isRequired}
@@ -79,6 +82,7 @@ export const renderElement = element => {
           name={element.name}
           label={element.title}
           span={element.span}
+          visibleIf={element.visibleIf}
         />
       );
     case 'checkbox':
@@ -95,6 +99,7 @@ export const renderElement = element => {
           showOtherItem={element.showOtherItem}
           noneText={element.noneText}
           otherText={element.otherText}
+          visibleIf={element.visibleIf}
         />
       );
     case 'radiogroup':
@@ -107,6 +112,7 @@ export const renderElement = element => {
           name={element.name}
           label={element.title}
           span={element.span}
+          visibleIf={element.visibleIf}
         />
       );
     case 'boolean':
@@ -120,6 +126,7 @@ export const renderElement = element => {
           label={element.title}
           labelPosition={element.labelPosition}
           span={element.span}
+          visibleIf={element.visibleIf}
         />
       );
     case 'date':
@@ -132,6 +139,7 @@ export const renderElement = element => {
           name={element.name}
           label={element.title}
           span={element.span}
+          visibleIf={element.visibleIf}
         />
       );
     case 'file':
@@ -144,6 +152,7 @@ export const renderElement = element => {
           name={element.name}
           label={element.title}
           span={element.span}
+          visibleIf={element.visibleIf}
         />
       );
     case 'dropdown':
@@ -157,6 +166,7 @@ export const renderElement = element => {
           label={element.title}
           span={element.span}
           options={element.choices}
+          visibleIf={element.visibleIf}
         />
       );
 
