@@ -37,7 +37,7 @@
               "span": "6/12"
             },
             {
-              "type": "text",
+              "type": "date",
               "inputType": "date",
               "isRequired": true,
               "name": "birthDate",
@@ -85,17 +85,15 @@
               "showOtherItem": true,
               "isRequired": true,
               "name": "completedBy",
-              "otherText": "Other (specify)",
               "title": "Who completed this form:",
               "span": "6/12"
             },
             {
               "type": "text",
               "name": "completedByOtherName",
-              "visibleIf": "{completedBy} != \"patient\"",
+              "visibleIf": "{completedBy} = 'spouse'",
               "startWithNewLine": false,
               "title": "Name (if other than patient):",
-              "isRequired": true,
               "span": "6/12"
             }
           ],
@@ -120,7 +118,6 @@
             }
           ],
           "colCount": 0,
-          "isRequired": true,
           "name": "everhospitalized",
           "title": "Have you ever been hospitalized?"
         },
@@ -137,13 +134,11 @@
             }
           ],
           "colCount": 0,
-          "isRequired": true,
           "name": "injuriesbrokenbones",
           "title": "Have you had any serious injuries and/or broken bones?"
         },
         {
           "type": "comment",
-          "isRequired": true,
           "name": "injuriesbrokenbones_describe",
           "startWithNewLine": false,
           "title": "Describe",
@@ -167,7 +162,6 @@
             }
           ],
           "colCount": 0,
-          "isRequired": true,
           "name": "bloodtransfusion",
           "title": "Have you ever received a blood transfusion?"
         },
@@ -192,13 +186,11 @@
             }
           ],
           "colCount": 0,
-          "isRequired": true,
           "name": "ousideUSACanada",
           "title": "Have you ever traveled or lived outside the United States or Canada?"
         },
         {
           "type": "comment",
-          "isRequired": true,
           "name": "ousideUSACanada_describe",
           "startWithNewLine": false,
           "title": "Describe",
@@ -235,7 +227,6 @@
               "name": "year",
               "title": "Year",
               "cellType": "text",
-              "isRequired": true,
               "visibleIf": "{row.answer} = \"yes\""
             }
           ],
@@ -297,7 +288,6 @@
               "name": "description",
               "title": "Describe the problem",
               "cellType": "comment",
-              "isRequired": true,
               "visibleIf": "{row.answer} = \"yes\""
             }
           ],
@@ -544,8 +534,7 @@
               "visible": false,
               "visibleIf": "{currentlyMarried} = 'Yes'",
               "startWithNewLine": false,
-              "title": "In what year did this marriage occure?",
-              "isRequired": true
+              "title": "In what year did this marriage occure?"
             },
             {
               "type": "paneldynamic",
@@ -572,6 +561,7 @@
             {
               "type": "panel",
               "name": "currentSpouse",
+              "visibleIf": "{currentlyMarried} = 'Yes'",
               "elements": [
                 {
                   "type": "radiogroup",
@@ -579,45 +569,38 @@
                   "colCount": 0,
                   "isRequired": true,
                   "name": "currentSpouseStatus",
-                  "title": " "
+                  "title": "Current spouse status:",
+                  "span": "3/12"
                 },
                 {
-                  "type": "text",
+                  "type": "number",
                   "name": "currentSpouseAge",
                   "visible": false,
                   "visibleIf": "{currentSpouseStatus} = 'Alive'",
                   "startWithNewLine": false,
                   "title": "Age",
-                  "isRequired": true
+                  "span": "2/12"
                 },
                 {
                   "type": "comment",
-                  "isRequired": true,
                   "name": "currentSpouseHelthProblems",
                   "rows": 2,
                   "title": "Health problems or cause of death:",
-                  "visibleIf": "{currentSpouseStatus} != 'Not applicable' "
+                  "visibleIf": "{currentSpouseStatus} = 'Deceased'",
+                  "span": "4/12"
                 },
                 {
                   "type": "radiogroup",
                   "choices": ["Retired", "Unemployed", "Homemaker", "Employed"],
                   "colCount": 0,
-                  "isRequired": true,
                   "name": "currentSpouseEmploymentStatus",
                   "title": "Current employment status:",
                   "visible": false,
-                  "visibleIf": "{currentSpouseStatus} = 'Alive'"
+                  "visibleIf": "{currentSpouseStatus} = 'Alive'",
+                  "span": "3/12"
                 }
               ],
               "title": "Current Spouse Information"
-            },
-            {
-              "type": "text",
-              "name": "currentSpouseOccupation",
-              "visible": false,
-              "visibleIf": "{currentSpouseEmploymentStatus} = 'Employed'",
-              "title": "Current occupation(s):",
-              "isRequired": true
             }
           ],
           "title": "Marital Status"
@@ -632,7 +615,6 @@
           "type": "radiogroup",
           "choices": ["Yes", "No"],
           "colCount": 0,
-          "isRequired": true,
           "name": "adopted",
           "title": "Are you adopted?"
         },
@@ -651,10 +633,11 @@
           "html": "Complete the following information about your <b>blood</b> relatives.  Exclude adoptive siblings and adopted children. "
         },
         {
-          "type": "paneldynamic",
+          "type": "panel",
           "name": "bloodRelativesInfo",
+          "visibleIf": "{adopted} = 'No'",
           "title": "Blood relatives information",
-          "templateElements": [
+          "elements": [
             {
               "type": "dropdown",
               "name": "relativeType",
@@ -770,7 +753,6 @@
           "type": "radiogroup",
           "choices": ["No", "Yes"],
           "colCount": 0,
-          "isRequired": true,
           "name": "primaryCareProvider",
           "title": "Do you have a Primary Care Provider?"
         },
@@ -781,15 +763,13 @@
             {
               "type": "text",
               "name": "primaryCareProviderName",
-              "title": "Name:",
-              "isRequired": true
+              "title": "Name:"
             },
             {
               "type": "text",
               "name": "primaryCareProviderPhone",
               "startWithNewLine": false,
-              "title": "Phone:",
-              "isRequired": true
+              "title": "Phone:"
             },
             {
               "type": "comment",
@@ -800,7 +780,6 @@
               "type": "radiogroup",
               "choices": ["No", "Yes"],
               "colCount": 0,
-              "isRequired": true,
               "name": "primaryCareProviderSent",
               "title": "Do you want a summary of your visit sent to this person?"
             }
@@ -813,7 +792,6 @@
           "type": "radiogroup",
           "choices": ["No", "Yes"],
           "colCount": 0,
-          "isRequired": true,
           "name": "primaryCareProviderRecommend",
           "title": "Did a non-Vanderbilt physician or healthcare provider recommend or arrange this visit for you?"
         },
@@ -834,7 +812,6 @@
                 }
               ],
               "colCount": 0,
-              "isRequired": true,
               "name": "primaryCareProviderWhoSent",
               "title": "Who sent you?"
             },
@@ -845,15 +822,13 @@
                 {
                   "type": "text",
                   "name": "primaryCareProviderOtherName",
-                  "title": "Name:",
-                  "isRequired": true
+                  "title": "Name:"
                 },
                 {
                   "type": "text",
                   "name": "primaryCareProviderOtherPhone",
                   "startWithNewLine": false,
-                  "title": "Phone:",
-                  "isRequired": true
+                  "title": "Phone:"
                 },
                 {
                   "type": "comment",
@@ -864,7 +839,6 @@
                   "type": "radiogroup",
                   "choices": ["No", "Yes"],
                   "colCount": 0,
-                  "isRequired": true,
                   "name": "primaryCareProviderOtherSent",
                   "title": "Do you want a summary of your visit sent to this person?"
                 }
@@ -891,7 +865,6 @@
               "type": "radiogroup",
               "choices": ["No", "Yes"],
               "colCount": 0,
-              "isRequired": true,
               "name": "currentMedication",
               "title": "Are you currently taking any prescription and/or non-prescription medications including vitamins, nutritional supplements, oral contraceptives, pain relievers, diuretics, laxatives, herbal remedies, and cold medications? "
             },
@@ -937,7 +910,6 @@
               "type": "radiogroup",
               "choices": ["No", "Yes"],
               "colCount": 0,
-              "isRequired": true,
               "name": "recentlyUsedMedication",
               "title": "Are there other medications you have recently used?"
             },
@@ -979,7 +951,6 @@
           "type": "radiogroup",
           "choices": ["No", "Yes"],
           "colCount": 0,
-          "isRequired": true,
           "name": "aspirinContainingProducts",
           "title": "Have you taken aspirin-containing products in the last two weeks?"
         },
@@ -987,7 +958,6 @@
           "type": "radiogroup",
           "choices": ["No", "Yes"],
           "colCount": 0,
-          "isRequired": true,
           "name": "steroidDrugs",
           "title": "Have you taken steroid or cortisone-type drugs within the last year?"
         }
@@ -1005,7 +975,6 @@
               "type": "radiogroup",
               "choices": ["No", "Yes"],
               "colCount": 0,
-              "isRequired": true,
               "name": "hasAllergiesMedication",
               "title": "Have you had hives, skin rash, breathing problems, or other allergic reactions to medications?"
             },
@@ -1044,7 +1013,6 @@
               "type": "radiogroup",
               "choices": ["No", "Yes"],
               "colCount": 0,
-              "isRequired": true,
               "name": "hasUnpleasantMedication",
               "title": "Are there medications, other than those you are allergic to, that you would prefer not to take due to prior unpleasant side effects?"
             },
@@ -1080,7 +1048,6 @@
                   "type": "radiogroup",
                   "choices": ["No", "Yes"],
                   "colCount": 0,
-                  "isRequired": true,
                   "name": "allergicReactionXRay",
                   "title": "Iodine or X-ray contrast dye"
                 },
@@ -1088,7 +1055,6 @@
                   "type": "radiogroup",
                   "choices": ["No", "Yes"],
                   "colCount": 0,
-                  "isRequired": true,
                   "name": "allergicReactionBee",
                   "startWithNewLine": false,
                   "title": "Bee or wasp stings"
@@ -1097,7 +1063,6 @@
                   "type": "radiogroup",
                   "choices": ["No", "Yes"],
                   "colCount": 0,
-                  "isRequired": true,
                   "name": "allergicReactionLatext",
                   "title": "Latex or Rubber"
                 },
@@ -1105,7 +1070,6 @@
                   "type": "radiogroup",
                   "choices": ["No", "Yes"],
                   "colCount": 0,
-                  "isRequired": true,
                   "name": "allergicReactionTape",
                   "startWithNewLine": false,
                   "title": "Adhesive tape"
@@ -1124,7 +1088,6 @@
               "type": "radiogroup",
               "choices": ["No", "Yes"],
               "colCount": 0,
-              "isRequired": true,
               "name": "hasFoodAllergies",
               "title": "Do you have any food allergies?"
             },
@@ -1148,7 +1111,6 @@
           "type": "matrix",
           "columns": ["No", "Yes"],
           "isAllRowRequired": true,
-          "isRequired": true,
           "name": "sympthoms",
           "rows": [
             "Skin rash, sore, excessive bruising or change of a mole?",
@@ -1201,7 +1163,6 @@
           "type": "radiogroup",
           "choices": [" Ful", "Upper", "Lower", "Partial"],
           "colCount": 0,
-          "isRequired": true,
           "name": "howWearDentures",
           "title": "How do you wear dentures?",
           "visible": false,
@@ -1253,7 +1214,6 @@
               "type": "radiogroup",
               "choices": ["Unknown", "No", "Yes"],
               "colCount": 0,
-              "isRequired": true,
               "name": "abnormalPapSmear",
               "title": "Have you ever had an abnormal Pap smear?"
             },

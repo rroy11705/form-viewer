@@ -5,7 +5,11 @@ import { FormProvider } from 'react-hook-form';
 const FormContent = ({ model, page, methods, onPageChange }) => {
   const pageDetails = useMemo(() => model?.pages?.at(page) ?? null, [model, page]);
 
+  console.log(methods?.formState?.errors);
   const onSubmit = data => {
+    console.log(data);
+    console.log(model.pages);
+    console.log(page);
     if (page < model.pages.length - 1) {
       onPageChange(page + 1);
     } else {
@@ -16,7 +20,7 @@ const FormContent = ({ model, page, methods, onPageChange }) => {
     <FormProvider {...methods}>
       <form
         onSubmit={methods.handleSubmit(onSubmit)}
-        className="relative w-full bg-gray-100 overflow-y-auto"
+        className="relative w-full h-full bg-gray-100 overflow-y-auto"
       >
         <div
           className="p-4 w-full"
