@@ -34,13 +34,8 @@ const Matrix = ({
 }) => {
   const {
     control,
-    setValue,
     formState: { errors },
   } = useFormContext();
-
-  useEffect(() => {
-    setValue(name, []);
-  }, [name, setValue]);
 
   return (
     <Controller

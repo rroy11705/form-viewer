@@ -21,7 +21,13 @@ const FormStepper = ({ details = [], page = 0, onPageChange }) => {
           details.length - 1 === i ? (
             <li className="flex items-center" onClick={() => onPageChange(i)}>
               {/* {page === i ? done : null} */}
-              <span className="me-2">{i + 1}</span>
+              <span
+                className={`h-8 w-8 rounded-full cursor-pointer flex items-center justify-center me-2 ${
+                  page === i ? 'bg-gray-200 border-2 border-gray-400' : ''
+                }`}
+              >
+                {i + 1}
+              </span>
             </li>
           ) : (
             <li

@@ -5,11 +5,15 @@ import { spanMap } from '../../../helper';
 const SimpleMatrix = ({ id, type, required, columns, isAllRowRequired, name, rows, label }) => {
   return (
     <div className="flex flex-col w-full gap-3">
-      <div className="pb-4 pt-7 px-3">
-        <p>{label}</p>
-      </div>
-      <hr />
-      <div className="px-3 flex flex-row w-full">
+      {label && (
+        <>
+          <div className="pb-4 pt-7 px-3">
+            <p>{label}</p>
+          </div>
+          <hr />
+        </>
+      )}
+      <div className="flex flex-row justify-between w-full min-h-10 bg-gray-100">
         <p className="w-1/3"></p>
         {columns?.map((col, i) => (
           <div key={i} className="flex flex-row w-3/12 items-center px-[7px]">
@@ -17,18 +21,24 @@ const SimpleMatrix = ({ id, type, required, columns, isAllRowRequired, name, row
           </div>
         ))}
       </div>
-      <div className="px-3">
-        {rows.map((row, i) => (
-          <div key={i} className="flex flex-row w-full">
-            <p className="w-1/3">{row}</p>
+      <div>
+        {rows?.map((row, i) => (
+          <div
+            key={i}
+            className={`flex flex-row justify-between items-center w-full min-h-10 ${
+              i % 2 === 1 ? 'bg-gray-100' : 'bg-gray-50'
+            }`}
+          >
+            <p className="w-1/3 px-3">{row}</p>
             {columns?.map((opt, i) => {
               return (
-                <div key={i} className="flex flex-row w-3/12 items-center">
+                <div key={opt} className="flex flex-row w-3/12 items-center">
                   <Radio
                     direction={'row'}
                     options={[{ value: opt, text: '' }]}
                     name={row}
                     span={'1/12'}
+                    margin="auto"
                   />
                 </div>
               );

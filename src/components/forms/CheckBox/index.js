@@ -39,26 +39,27 @@ const CheckBox = ({
               )}
               <div
                 className={`flex ${
-                  direction === 'row' ? 'flex-row gap-3' : 'flex-col'
-                }  ps-3 items-center w-full`}
+                  direction === 'row' ? 'flex-row' : 'flex-col'
+                }  ps-3 flex-wrap items-center w-full`}
               >
                 {options?.map((elem, i) => {
                   return (
                     <div
-                      key={elem.value}
+                      key={elem.value ?? elem}
                       onClick={() => {
                         setValue(
                           name,
-                          value?.includes(elem.value)
-                            ? value?.filter(x => x === elem.value)
-                            : [...(value ?? []), elem.value],
+                          value?.includes(elem.value ?? elem)
+                            ? value?.filter(x => x === (elem.value ?? elem))
+                            : [...(value ?? []), elem.value ?? elem],
                         );
                       }}
+                      className="w-3/12"
                     >
                       <input
-                        id={elem.value}
+                        id={elem.value ?? elem}
                         type="checkbox"
-                        value={elem.value}
+                        value={elem.value ?? elem}
                         name={name}
                         checked={value?.includes(elem.value)}
                         onChange={() => null}
@@ -66,7 +67,7 @@ const CheckBox = ({
                         className={`w-4 h-4 text-blue-600 bg-white border-gray-300 rounded focus:!ring-none  !ring-none`}
                       />
                       <label className="w-full py-3 ms-2 text-sm font-medium text-black-900 dark:text-black-300">
-                        {elem?.text}
+                        {elem?.text ?? elem}
                       </label>
                     </div>
                   );
@@ -81,6 +82,7 @@ const CheckBox = ({
                           : [...(value ?? []), 'other'],
                       );
                     }}
+                    className="w-3/12"
                   >
                     <input
                       id="other"
@@ -93,7 +95,7 @@ const CheckBox = ({
                       className={`w-4 h-4 text-blue-600 bg-white border-gray-300 rounded focus:!ring-none !ring-none`}
                     />
                     <label className="w-full py-3 ms-2 text-sm font-medium text-black-900 dark:text-black-300">
-                      {otherText}
+                      {otherText ?? 'Others'}
                     </label>
                   </div>
                 )}

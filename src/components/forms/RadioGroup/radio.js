@@ -15,10 +15,13 @@ const Radio = ({
   onBlur,
   direction = 'row',
   span,
+  margin,
 }) => {
   return (
     <div
-      className="flex flex-col justify-center gap-3 mb-6 min-h-10"
+      className={`flex flex-col justify-center gap-3 ${
+        margin === 'auto' ? 'my-3' : 'mb-6'
+      } min-h-10`}
       style={{ width: spanMap(span) }}
     >
       {label && (
