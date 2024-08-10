@@ -1,6 +1,7 @@
 import Panel from '../components/common/Panel';
 import * as yup from 'yup';
 import BooleanInput from '../components/forms/BooleanInput';
+import DateInput from '../components/forms/DateInput';
 
 export const spanMap = value => {
   switch (value) {
@@ -53,6 +54,8 @@ export const renderElement = element => {
       return <div style={{ width: spanMap(element?.span) }}>{element.title}</div>;
     case 'boolean':
       return <BooleanInput value="" label={element.title} />;
+    case 'date':
+      return <DateInput value="" label={element.title} />;
     default:
       return null;
   }
@@ -69,6 +72,8 @@ export const buildValidationSchema = data => {
           break;
         }
         case 'text':
+        case 'date':
+        case 'radiogroup':
           schema[element.name] = yup.string();
           break;
         default:

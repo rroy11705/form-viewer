@@ -43,7 +43,7 @@
               "span": "6/12"
             },
             {
-              "type": "text",
+              "type": "date",
               "name": "birthdate",
               "startWithNewLine": false,
               "title": "Date of birth",
