@@ -37,7 +37,7 @@
               "span": "6/12"
             },
             {
-              "type": "text",
+              "type": "date",
               "inputType": "date",
               "isRequired": true,
               "name": "birthDate",
