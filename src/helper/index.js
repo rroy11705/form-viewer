@@ -8,6 +8,7 @@ import CheckBox from '../components/forms/CheckBox';
 import RadioGroup from '../components/forms/RadioGroup';
 import FileUpload from '../components/forms/FileUpload';
 import Textarea from '../components/forms/TextArea';
+import Matrix from '../components/forms/Matrix';
 
 export const VisibleIfRegex = /\{([^}]+)\}\s*=\s*'([^']+)'/;
 
@@ -167,6 +168,19 @@ export const renderElement = element => {
           span={element.span}
           options={element.choices}
           visibleIf={element.visibleIf}
+        />
+      );
+
+    case 'matrix':
+      return (
+        <Matrix
+          id={element.type}
+          type={element.type}
+          columns={element.columns}
+          rows={element.rows}
+          label={element.title}
+          isAllRowRequired={element.isAllRowRequired}
+          name={element.name}
         />
       );
 
