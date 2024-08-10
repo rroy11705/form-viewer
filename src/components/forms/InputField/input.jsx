@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 import { spanMap } from '../../../helper';
 
 const InputField = forwardRef(
@@ -35,6 +35,11 @@ const InputField = forwardRef(
   ) => {
     const [inputValue, setInputValue] = useState(value || '');
 
+    useEffect(() => {
+      if (value) {
+      }
+    }, [value]);
+
     // Handle input change
     const handleChange = e => {
       const newValue = e.target.value;
@@ -43,14 +48,14 @@ const InputField = forwardRef(
     };
 
     return (
-      <div className="flex flex-col gap-3 mb-6" style={{ width: spanMap(span) }}>
+      <div className="relative flex flex-col gap-3 mb-6" style={{ width: spanMap(span) }}>
         {label && (
           <label htmlFor={id} className="block mb-2 text-sm font-medium text-gray-900">
             {label}
             {required && <span className="text-red-700"> *</span>}
           </label>
         )}
-        <div className={`custom-textfield-wrapper${disabled ? ' disabled' : ''}`}>
+        <div className={`${disabled ? ' disabled' : ''}`}>
           {startIcon && (
             <span className="start-icon" title={iconInfo}>
               {startIcon}
@@ -81,9 +86,7 @@ const InputField = forwardRef(
           )}
         </div>
         {(error || success || helperText) && (
-          <div className="custom-textfield-helper">
-            {showErrorIcon && error && <span className="icon-error">⚠️</span>}
-            {showSuccessIcon && success && <span className="icon-success">✔️</span>}
+          <div className="absolute top-full">
             {error ? <span className="text-error">{error}</span> : null}
             {success ? <span className="text-success">{success}</span> : null}
             {helperText ? <span className="helper-text">{helperText}</span> : null}

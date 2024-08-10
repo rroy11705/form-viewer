@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { spanMap } from '../../../helper';
 
-const CustomTextArea = forwardRef(
+const Input = forwardRef(
   (
     {
       id = '',
@@ -53,14 +53,16 @@ const CustomTextArea = forwardRef(
           />
           {endIcon && <span className="icon end-icon">{endIcon}</span>}
         </div>
-        {helperText && <small>{helperText}</small>}
-        {error && <div className="error-message">{error}</div>}
-        {success && <div className="success-message">{success}</div>}
-        {showErrorIcon && error && <span className="icon error-icon">!</span>}
-        {showSuccessIcon && success && <span className="icon success-icon">✓</span>}
+        {(error || success || helperText) && (
+          <div className="absolute top-full">
+            {error ? <span className="text-error">{error}</span> : null}
+            {success ? <span className="text-success">{success}</span> : null}
+            {helperText ? <span className="helper-text">{helperText}</span> : null}
+          </div>
+        )}
       </div>
     );
   },
 );
 
-export default CustomTextArea;
+export default Input;
