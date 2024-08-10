@@ -615,7 +615,6 @@
           "type": "radiogroup",
           "choices": ["Yes", "No"],
           "colCount": 0,
-          "isRequired": true,
           "name": "adopted",
           "title": "Are you adopted?"
         },
@@ -634,10 +633,11 @@
           "html": "Complete the following information about your <b>blood</b> relatives.  Exclude adoptive siblings and adopted children. "
         },
         {
-          "type": "paneldynamic",
+          "type": "panel",
           "name": "bloodRelativesInfo",
+          "visibleIf": "{adopted} = 'No'",
           "title": "Blood relatives information",
-          "templateElements": [
+          "elements": [
             {
               "type": "dropdown",
               "name": "relativeType",
@@ -753,7 +753,6 @@
           "type": "radiogroup",
           "choices": ["No", "Yes"],
           "colCount": 0,
-          "isRequired": true,
           "name": "primaryCareProvider",
           "title": "Do you have a Primary Care Provider?"
         },
@@ -764,15 +763,13 @@
             {
               "type": "text",
               "name": "primaryCareProviderName",
-              "title": "Name:",
-              "isRequired": true
+              "title": "Name:"
             },
             {
               "type": "text",
               "name": "primaryCareProviderPhone",
               "startWithNewLine": false,
-              "title": "Phone:",
-              "isRequired": true
+              "title": "Phone:"
             },
             {
               "type": "comment",
@@ -783,7 +780,6 @@
               "type": "radiogroup",
               "choices": ["No", "Yes"],
               "colCount": 0,
-              "isRequired": true,
               "name": "primaryCareProviderSent",
               "title": "Do you want a summary of your visit sent to this person?"
             }
@@ -796,7 +792,6 @@
           "type": "radiogroup",
           "choices": ["No", "Yes"],
           "colCount": 0,
-          "isRequired": true,
           "name": "primaryCareProviderRecommend",
           "title": "Did a non-Vanderbilt physician or healthcare provider recommend or arrange this visit for you?"
         },
@@ -817,7 +812,6 @@
                 }
               ],
               "colCount": 0,
-              "isRequired": true,
               "name": "primaryCareProviderWhoSent",
               "title": "Who sent you?"
             },
@@ -828,15 +822,13 @@
                 {
                   "type": "text",
                   "name": "primaryCareProviderOtherName",
-                  "title": "Name:",
-                  "isRequired": true
+                  "title": "Name:"
                 },
                 {
                   "type": "text",
                   "name": "primaryCareProviderOtherPhone",
                   "startWithNewLine": false,
-                  "title": "Phone:",
-                  "isRequired": true
+                  "title": "Phone:"
                 },
                 {
                   "type": "comment",
@@ -847,7 +839,6 @@
                   "type": "radiogroup",
                   "choices": ["No", "Yes"],
                   "colCount": 0,
-                  "isRequired": true,
                   "name": "primaryCareProviderOtherSent",
                   "title": "Do you want a summary of your visit sent to this person?"
                 }
@@ -874,7 +865,6 @@
               "type": "radiogroup",
               "choices": ["No", "Yes"],
               "colCount": 0,
-              "isRequired": true,
               "name": "currentMedication",
               "title": "Are you currently taking any prescription and/or non-prescription medications including vitamins, nutritional supplements, oral contraceptives, pain relievers, diuretics, laxatives, herbal remedies, and cold medications? "
             },
@@ -920,7 +910,6 @@
               "type": "radiogroup",
               "choices": ["No", "Yes"],
               "colCount": 0,
-              "isRequired": true,
               "name": "recentlyUsedMedication",
               "title": "Are there other medications you have recently used?"
             },
@@ -962,7 +951,6 @@
           "type": "radiogroup",
           "choices": ["No", "Yes"],
           "colCount": 0,
-          "isRequired": true,
           "name": "aspirinContainingProducts",
           "title": "Have you taken aspirin-containing products in the last two weeks?"
         },
@@ -970,7 +958,6 @@
           "type": "radiogroup",
           "choices": ["No", "Yes"],
           "colCount": 0,
-          "isRequired": true,
           "name": "steroidDrugs",
           "title": "Have you taken steroid or cortisone-type drugs within the last year?"
         }
@@ -988,7 +975,6 @@
               "type": "radiogroup",
               "choices": ["No", "Yes"],
               "colCount": 0,
-              "isRequired": true,
               "name": "hasAllergiesMedication",
               "title": "Have you had hives, skin rash, breathing problems, or other allergic reactions to medications?"
             },
@@ -1027,7 +1013,6 @@
               "type": "radiogroup",
               "choices": ["No", "Yes"],
               "colCount": 0,
-              "isRequired": true,
               "name": "hasUnpleasantMedication",
               "title": "Are there medications, other than those you are allergic to, that you would prefer not to take due to prior unpleasant side effects?"
             },
@@ -1063,7 +1048,6 @@
                   "type": "radiogroup",
                   "choices": ["No", "Yes"],
                   "colCount": 0,
-                  "isRequired": true,
                   "name": "allergicReactionXRay",
                   "title": "Iodine or X-ray contrast dye"
                 },
@@ -1071,7 +1055,6 @@
                   "type": "radiogroup",
                   "choices": ["No", "Yes"],
                   "colCount": 0,
-                  "isRequired": true,
                   "name": "allergicReactionBee",
                   "startWithNewLine": false,
                   "title": "Bee or wasp stings"
@@ -1080,7 +1063,6 @@
                   "type": "radiogroup",
                   "choices": ["No", "Yes"],
                   "colCount": 0,
-                  "isRequired": true,
                   "name": "allergicReactionLatext",
                   "title": "Latex or Rubber"
                 },
@@ -1088,7 +1070,6 @@
                   "type": "radiogroup",
                   "choices": ["No", "Yes"],
                   "colCount": 0,
-                  "isRequired": true,
                   "name": "allergicReactionTape",
                   "startWithNewLine": false,
                   "title": "Adhesive tape"
@@ -1107,7 +1088,6 @@
               "type": "radiogroup",
               "choices": ["No", "Yes"],
               "colCount": 0,
-              "isRequired": true,
               "name": "hasFoodAllergies",
               "title": "Do you have any food allergies?"
             },
@@ -1131,7 +1111,6 @@
           "type": "matrix",
           "columns": ["No", "Yes"],
           "isAllRowRequired": true,
-          "isRequired": true,
           "name": "sympthoms",
           "rows": [
             "Skin rash, sore, excessive bruising or change of a mole?",
@@ -1184,7 +1163,6 @@
           "type": "radiogroup",
           "choices": [" Ful", "Upper", "Lower", "Partial"],
           "colCount": 0,
-          "isRequired": true,
           "name": "howWearDentures",
           "title": "How do you wear dentures?",
           "visible": false,
@@ -1236,7 +1214,6 @@
               "type": "radiogroup",
               "choices": ["Unknown", "No", "Yes"],
               "colCount": 0,
-              "isRequired": true,
               "name": "abnormalPapSmear",
               "title": "Have you ever had an abnormal Pap smear?"
             },
