@@ -21,7 +21,7 @@ const FormViewer = ({ model = null }) => {
 
   if (model)
     return (
-      <div className="w-full h-full">
+      <div className="w-full">
         <FormHeader title={model.title} />
         <div
           className={`w-full h-[calc(100%_-_48px)] flex ${
