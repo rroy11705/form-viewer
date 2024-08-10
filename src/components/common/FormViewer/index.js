@@ -36,7 +36,7 @@ const FormViewer = ({ model = null }) => {
             model.showProgressBar ? 'flex-col' : 'flex-row'
           }`}
         >
-          {model.showProgressBar ? (
+          {model?.pages?.length === 1 ? null : model.showProgressBar ? (
             <FormStepper
               details={model.pages?.map(x => ({
                 name: x.name,

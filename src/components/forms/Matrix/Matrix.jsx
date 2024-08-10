@@ -27,8 +27,12 @@ const SimpleMatrix = ({
       <div className="flex flex-row justify-between w-full min-h-10 bg-gray-100">
         <p className="w-1/3"></p>
         {columns?.map((col, i) => (
-          <div key={i} className="flex flex-row w-3/12 items-center px-[7px]">
-            <p style={{ width: spanMap('1/12') }}>{col}</p>
+          <div
+            key={i}
+            style={{ width: spanMap('1/12') }}
+            className="flex flex-row items-center px-[7px]"
+          >
+            <p>{col}</p>
           </div>
         ))}
       </div>
@@ -43,12 +47,15 @@ const SimpleMatrix = ({
             <p className="w-1/3 px-3">{row}</p>
             {columns?.map((opt, i) => {
               return (
-                <div key={opt} className="flex flex-row w-3/12 items-center">
+                <div
+                  key={opt}
+                  style={{ width: spanMap('1/12') }}
+                  className="flex flex-row items-center"
+                >
                   <Radio
                     direction={'row'}
                     options={[{ value: opt, text: '' }]}
                     name={row}
-                    span={'1/12'}
                     margin="auto"
                     onChange={onChange}
                     value={(value && value[row]) ?? ''}
