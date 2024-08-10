@@ -39,15 +39,17 @@
                   "text": "Your SSN must be a 9-digit number",
                   "regex": "^(?!0{3})(?!6{3})[0-8]\\d{2}-?(?!0{2})\\d{2}-?(?!0{4})\\d{4}$"
                 }
-              ]
+              ],
+              "span": "6/12"
             },
             {
-              "type": "text",
+              "type": "date",
               "name": "birthdate",
               "startWithNewLine": false,
               "title": "Date of birth",
               "isRequired": true,
-              "inputType": "date"
+              "inputType": "date",
+              "span": "6/12"
             },
             {
               "type": "text",
