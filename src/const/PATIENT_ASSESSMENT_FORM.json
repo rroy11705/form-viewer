@@ -219,11 +219,10 @@
                     {
                       "type": "boolean",
                       "name": "sexually-active",
-                      "title": "Are you sexually active?",
-                      "span": "6/12"
+                      "title": "Are you sexually active?"
                     },
                     {
-                      "type": "text",
+                      "type": "number",
                       "name": "sexual-partners-number",
                       "title": "How many sexual partners do you have?",
                       "inputType": "number",
