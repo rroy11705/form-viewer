@@ -49,11 +49,14 @@ const Select = React.forwardRef(
           disabled={disabled}
           value={value}
         >
-          {options.map((option, index) => (
+          {[{ value: null, text: 'Select Option' }, ...options].map((option, index) => (
             <option
               key={index}
-              className="text-black"
+              className={`text-black ${option?.value === null ? 'hidden' : ''}`}
+              value={option?.value ?? option}
               onClick={() => handleSelectChange(option?.value ?? value)}
+              selected={option?.value === null}
+              disabled={option?.value === null}
             >
               {option.text ?? option}
             </option>

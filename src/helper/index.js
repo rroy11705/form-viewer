@@ -6,6 +6,7 @@ import InputField from '../components/forms/InputField';
 import SelectField from '../components/forms/Select';
 import CheckBox from '../components/forms/CheckBox';
 import RadioGroup from '../components/forms/RadioGroup';
+import FileUpload from '../components/forms/FileUpload';
 
 export const spanMap = value => {
   switch (value) {
@@ -99,6 +100,18 @@ export const renderElement = element => {
         <DateInput
           id={element.name}
           type="date"
+          required={element.isRequired}
+          placeholder={element.placeholder}
+          name={element.name}
+          label={element.title}
+          span={element.span}
+        />
+      );
+    case 'file':
+      return (
+        <FileUpload
+          id={element.name}
+          type="select"
           required={element.isRequired}
           placeholder={element.placeholder}
           name={element.name}

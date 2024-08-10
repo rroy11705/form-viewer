@@ -346,7 +346,7 @@
       "title": "Symptoms",
       "elements": [
         {
-          "name": "Symptoms",
+          "name": "symptoms",
           "type": "panel",
           "elements": [
             {
@@ -382,14 +382,15 @@
           ]
         },
         {
-          "name": "Symptoms",
+          "name": "Concent",
           "type": "panel",
           "elements": [
             {
-              "type": "signaturepad",
+              "type": "file",
               "name": "signature",
               "title": "Signature:",
-              "titleLocation": "left"
+              "titleLocation": "left",
+              "span": "6/12"
             },
             {
               "type": "date",
@@ -398,7 +399,7 @@
               "titleLocation": "left",
               "inputType": "date",
               "defaultValueExpression": "today()",
-              "startWithNewLine": false
+              "span": "6/12"
             }
           ]
         }
