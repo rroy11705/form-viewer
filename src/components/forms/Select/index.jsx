@@ -69,6 +69,7 @@ const SelectField = (
     emptySearchComponent = null,
     emptyOptionsComponent = null,
     clearSelectionButton = false,
+    span,
   },
   ref,
 ) => {
@@ -128,6 +129,7 @@ const SelectField = (
             emptySearchComponent={emptySearchComponent}
             emptyOptionsComponent={emptyOptionsComponent}
             clearSelectionButton={clearSelectionButton}
+            span={span}
           />
         );
       }}

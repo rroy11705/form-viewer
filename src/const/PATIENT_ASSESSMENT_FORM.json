@@ -195,7 +195,8 @@
                       "value": "post-graduate",
                       "text": "Post-graduate degree(s)"
                     }
-                  ]
+                  ],
+                  "span": "6/12"
                 },
                 {
                   "type": "dropdown",
@@ -208,7 +209,8 @@
                     { "value": "separated", "text": "Separated" },
                     { "value": "single", "text": "Single" },
                     { "value": "widow", "text": "Widow(er)" }
-                  ]
+                  ],
+                  "span": "6/12"
                 },
                 {
                   "type": "panel",

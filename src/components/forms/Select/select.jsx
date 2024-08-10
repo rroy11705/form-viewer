@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { spanMap } from '../../../helper';
 // import './style.css';
 
 const Select = React.forwardRef(
@@ -20,6 +21,7 @@ const Select = React.forwardRef(
       showErrorIcon,
       showSuccessIcon,
       helperText,
+      span,
     },
     ref,
   ) => {
@@ -29,7 +31,7 @@ const Select = React.forwardRef(
     };
 
     return (
-      <div className="custom-select-container" style={{ color }}>
+      <div className="flex flex-col gap-3 mb-6" style={{ width: spanMap(span) }}>
         {label && (
           <label
             htmlFor={id}
@@ -40,7 +42,7 @@ const Select = React.forwardRef(
           </label>
         )}
         <select
-          className="flex flex-row justify-between bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5"
+          className="flex flex-row justify-between border w-full rounded-md focus:ring-blue-500 focus:border-blue-500 p-2"
           onChange={onChange}
           onBlur={onBlur}
           placeholder={placeholder}
