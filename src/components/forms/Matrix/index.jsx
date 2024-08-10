@@ -23,7 +23,7 @@ const Matrix = ({ columns, isAllRowRequired, name, rows, title }) => {
         {rows.map((row, i) => (
           <div key={i} className="flex flex-row w-full">
             <p className="w-1/3">{row}</p>
-            <RadioGroup id={row} direction={'row'} options={options} name={row} span={`6/12`} />
+            <RadioGroup direction={'row'} options={options} name={row} span={`6/12`} />
           </div>
         ))}
       </div>
