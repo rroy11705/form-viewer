@@ -30,15 +30,15 @@ const Radio = ({
       <div
         className={`flex ${
           direction === 'row' ? 'flex-row gap-3' : 'flex-col'
-        }  ps-3 items-start w-full`}
+        }  ps-3 items-start w-full min-h-10`}
       >
         {options.map((elem, i) => {
           return (
-            <div key={elem.value}>
+            <div key={elem?.value ?? elem}>
               <input
-                id={`${name}-${elem?.value}`}
+                id={`${name}-${elem?.value ?? elem}`}
                 type="radio"
-                value={elem?.value}
+                value={elem?.value ?? elem}
                 onChange={onChange}
                 onBlur={onBlur}
                 disabled={disabled}
@@ -46,11 +46,10 @@ const Radio = ({
                 className={`w-4 h-4 text-blue-600 bg-white border-gray-300 focus:ring-blue-500 rounded-full`}
               />
               <label
-                htmlFor={`${name}-${elem?.value}`}
+                htmlFor={`${name}-${elem?.value ?? elem}`}
                 className="w-full py-3 ms-2 text-sm font-medium text-black-900"
               >
-                {elem?.text}
-                {required && <span className="text-red-700"> *</span>}
+                {elem?.text ?? elem}
               </label>
             </div>
           );

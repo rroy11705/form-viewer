@@ -85,17 +85,15 @@
               "showOtherItem": true,
               "isRequired": true,
               "name": "completedBy",
-              "otherText": "Other (specify)",
               "title": "Who completed this form:",
               "span": "6/12"
             },
             {
               "type": "text",
               "name": "completedByOtherName",
-              "visibleIf": "{completedBy} != \"patient\"",
+              "visibleIf": "{completedBy} = 'spouse'",
               "startWithNewLine": false,
               "title": "Name (if other than patient):",
-              "isRequired": true,
               "span": "6/12"
             }
           ],
@@ -120,7 +118,6 @@
             }
           ],
           "colCount": 0,
-          "isRequired": true,
           "name": "everhospitalized",
           "title": "Have you ever been hospitalized?"
         },
@@ -137,13 +134,11 @@
             }
           ],
           "colCount": 0,
-          "isRequired": true,
           "name": "injuriesbrokenbones",
           "title": "Have you had any serious injuries and/or broken bones?"
         },
         {
           "type": "comment",
-          "isRequired": true,
           "name": "injuriesbrokenbones_describe",
           "startWithNewLine": false,
           "title": "Describe",
@@ -167,7 +162,6 @@
             }
           ],
           "colCount": 0,
-          "isRequired": true,
           "name": "bloodtransfusion",
           "title": "Have you ever received a blood transfusion?"
         },
@@ -192,13 +186,11 @@
             }
           ],
           "colCount": 0,
-          "isRequired": true,
           "name": "ousideUSACanada",
           "title": "Have you ever traveled or lived outside the United States or Canada?"
         },
         {
           "type": "comment",
-          "isRequired": true,
           "name": "ousideUSACanada_describe",
           "startWithNewLine": false,
           "title": "Describe",
@@ -235,7 +227,6 @@
               "name": "year",
               "title": "Year",
               "cellType": "text",
-              "isRequired": true,
               "visibleIf": "{row.answer} = \"yes\""
             }
           ],
@@ -297,7 +288,6 @@
               "name": "description",
               "title": "Describe the problem",
               "cellType": "comment",
-              "isRequired": true,
               "visibleIf": "{row.answer} = \"yes\""
             }
           ],
@@ -544,8 +534,7 @@
               "visible": false,
               "visibleIf": "{currentlyMarried} = 'Yes'",
               "startWithNewLine": false,
-              "title": "In what year did this marriage occure?",
-              "isRequired": true
+              "title": "In what year did this marriage occure?"
             },
             {
               "type": "paneldynamic",
@@ -572,6 +561,7 @@
             {
               "type": "panel",
               "name": "currentSpouse",
+              "visibleIf": "{currentlyMarried} = 'Yes'",
               "elements": [
                 {
                   "type": "radiogroup",
@@ -579,45 +569,38 @@
                   "colCount": 0,
                   "isRequired": true,
                   "name": "currentSpouseStatus",
-                  "title": " "
+                  "title": "Current spouse status:",
+                  "span": "3/12"
                 },
                 {
-                  "type": "text",
+                  "type": "number",
                   "name": "currentSpouseAge",
                   "visible": false,
                   "visibleIf": "{currentSpouseStatus} = 'Alive'",
                   "startWithNewLine": false,
                   "title": "Age",
-                  "isRequired": true
+                  "span": "2/12"
                 },
                 {
                   "type": "comment",
-                  "isRequired": true,
                   "name": "currentSpouseHelthProblems",
                   "rows": 2,
                   "title": "Health problems or cause of death:",
-                  "visibleIf": "{currentSpouseStatus} != 'Not applicable' "
+                  "visibleIf": "{currentSpouseStatus} = 'Deceased'",
+                  "span": "4/12"
                 },
                 {
                   "type": "radiogroup",
                   "choices": ["Retired", "Unemployed", "Homemaker", "Employed"],
                   "colCount": 0,
-                  "isRequired": true,
                   "name": "currentSpouseEmploymentStatus",
                   "title": "Current employment status:",
                   "visible": false,
-                  "visibleIf": "{currentSpouseStatus} = 'Alive'"
+                  "visibleIf": "{currentSpouseStatus} = 'Alive'",
+                  "span": "3/12"
                 }
               ],
               "title": "Current Spouse Information"
-            },
-            {
-              "type": "text",
-              "name": "currentSpouseOccupation",
-              "visible": false,
-              "visibleIf": "{currentSpouseEmploymentStatus} = 'Employed'",
-              "title": "Current occupation(s):",
-              "isRequired": true
             }
           ],
           "title": "Marital Status"
