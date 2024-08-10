@@ -120,7 +120,8 @@
                     { "value": "never", "text": "Never" },
                     { "value": "yes", "text": "Yes" },
                     { "value": "quit", "text": "Quit" }
-                  ]
+                  ],
+                  "span": "6/12"
                 },
                 {
                   "type": "text",
@@ -128,7 +129,8 @@
                   "visibleIf": "{cigarettes} = 'yes'",
                   "title": "How many packs a day?",
                   "inputType": "number",
-                  "min": 0
+                  "min": 0,
+                  "span": "6/12"
                 },
                 {
                   "type": "multipletext",
