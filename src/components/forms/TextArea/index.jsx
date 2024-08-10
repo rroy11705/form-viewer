@@ -51,6 +51,7 @@ const TextArea = ({
   helperText = '',
   maxLength = null,
   minLength = null,
+  span,
 }) => {
   const {
     control,
@@ -77,6 +78,7 @@ const TextArea = ({
           id={id}
           name={name}
           value={value}
+          label={label}
           onChange={e => {
             defaultOnChange(e);
             onChange && onChange(e);
@@ -98,6 +100,7 @@ const TextArea = ({
           helperText={helperText}
           maxLength={maxLength}
           minLength={minLength}
+          span={span}
         />
       )}
     />

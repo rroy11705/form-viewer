@@ -29,7 +29,7 @@
               "span": "6/12"
             },
             {
-              "type": "text",
+              "type": "number",
               "name": "ssn",
               "title": "Social Security number",
               "requiredErrorText": "You SSN must be a 9-digit number.",
@@ -80,22 +80,22 @@
                   "type": "boolean",
                   "name": "diabetes",
                   "title": "Do you have diabetes?",
-                  "startWithNewLine": false
+                  "span": "4/12"
                 },
                 {
                   "type": "boolean",
                   "name": "high-blood-pressure",
                   "title": "High blood pressure?",
-                  "startWithNewLine": false
+                  "span": "4/12"
                 },
                 {
                   "type": "boolean",
                   "name": "high-cholesterol",
                   "title": "High cholesterol?",
-                  "startWithNewLine": false
+                  "span": "4/12"
                 },
                 {
-                  "type": "comment",
+                  "type": "textarea",
                   "name": "other-health-conditions",
                   "title": "Do you have other health conditions?",
                   "maxLength": 300
@@ -222,11 +222,12 @@
                       "title": "Are you sexually active?"
                     },
                     {
-                      "type": "text",
+                      "type": "number",
                       "name": "sexual-partners-number",
                       "title": "How many sexual partners do you have?",
                       "inputType": "number",
-                      "min": 0
+                      "min": 0,
+                      "span": "6/12"
                     },
                     {
                       "type": "radiogroup",
@@ -237,7 +238,8 @@
                         { "value": "women", "text": "Women" },
                         { "value": "both", "text": "Both" }
                       ],
-                      "colCount": 3
+                      "colCount": 3,
+                      "span": "6/12"
                     },
                     {
                       "type": "radiogroup",
@@ -346,49 +348,62 @@
       "title": "Symptoms",
       "elements": [
         {
-          "type": "tagbox",
           "name": "symptoms",
-          "title": "Please select any symptoms you have now or have had in the past month.",
-          "choices": [
-            "Fever",
-            "Chills",
-            "Feeling poorly",
-            "Feeling tired",
-            "Weight gain",
-            "Weight loss",
-            "Chest pain",
-            "Heart pounding",
-            "Fast pulse",
-            "Slow pulse",
-            "Leg pain with exercise",
-            "Leg swelling",
-            "Joint pain",
-            "Neck pain",
-            "Joint swelling",
-            "Joint stiffness",
-            "Muscle aches",
-            "Back pain",
-            "Sores",
-            "Rash",
-            "Itching",
-            "Change in a mole",
-            "Unusual growth/spot"
+          "type": "panel",
+          "elements": [
+            {
+              "type": "dropdown",
+              "name": "symptoms",
+              "title": "Please select any symptoms you have now or have had in the past month.",
+              "choices": [
+                "Fever",
+                "Chills",
+                "Feeling poorly",
+                "Feeling tired",
+                "Weight gain",
+                "Weight loss",
+                "Chest pain",
+                "Heart pounding",
+                "Fast pulse",
+                "Slow pulse",
+                "Leg pain with exercise",
+                "Leg swelling",
+                "Joint pain",
+                "Neck pain",
+                "Joint swelling",
+                "Joint stiffness",
+                "Muscle aches",
+                "Back pain",
+                "Sores",
+                "Rash",
+                "Itching",
+                "Change in a mole",
+                "Unusual growth/spot"
+              ]
+            }
           ]
         },
         {
-          "type": "signaturepad",
-          "name": "signature",
-          "title": "Signature:",
-          "titleLocation": "left"
-        },
-        {
-          "type": "text",
-          "name": "current-date",
-          "title": "Today's date:",
-          "titleLocation": "left",
-          "inputType": "date",
-          "defaultValueExpression": "today()",
-          "startWithNewLine": false
+          "name": "Concent",
+          "type": "panel",
+          "elements": [
+            {
+              "type": "file",
+              "name": "signature",
+              "title": "Signature:",
+              "titleLocation": "left",
+              "span": "6/12"
+            },
+            {
+              "type": "date",
+              "name": "current-date",
+              "title": "Today's date:",
+              "titleLocation": "left",
+              "inputType": "date",
+              "defaultValueExpression": "today()",
+              "span": "6/12"
+            }
+          ]
         }
       ]
     }

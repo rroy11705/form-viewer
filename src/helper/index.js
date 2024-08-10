@@ -6,6 +6,8 @@ import InputField from '../components/forms/InputField';
 import SelectField from '../components/forms/Select';
 import CheckBox from '../components/forms/CheckBox';
 import RadioGroup from '../components/forms/RadioGroup';
+import FileUpload from '../components/forms/FileUpload';
+import TextArea from '../components/forms/TextArea';
 
 export const spanMap = value => {
   switch (value) {
@@ -19,7 +21,7 @@ export const spanMap = value => {
       return 'calc(100%/4 - 3px)';
     }
     case '4/12': {
-      return 'calc(100%/3 - 4px)';
+      return 'calc((100%/3) - 8px)';
     }
     case '5/12': {
       return 'calc(500%/12 - 5px)';
@@ -53,11 +55,26 @@ export const renderElement = element => {
     case 'panel':
       return <Panel element={element} />;
     case 'text':
+    case 'number':
       return (
         <InputField
           id={element.name}
-          type="text"
+          type={element.type}
           required={element.isRequired}
+          maxLength={element.maxLength}
+          placeholder={element.placeholder}
+          name={element.name}
+          label={element.title}
+          span={element.span}
+        />
+      );
+    case 'textarea':
+      return (
+        <TextArea
+          id={element.name}
+          type={element.type}
+          required={element.isRequired}
+          maxLength={element.maxLength}
           placeholder={element.placeholder}
           name={element.name}
           label={element.title}
@@ -93,12 +110,34 @@ export const renderElement = element => {
         />
       );
     case 'boolean':
-      return <BooleanInput value="" label={element.title} />;
+      return (
+        <BooleanInput
+          id={element.name}
+          type="date"
+          required={element.isRequired}
+          placeholder={element.placeholder}
+          name={element.name}
+          label={element.title}
+          span={element.span}
+        />
+      );
     case 'date':
       return (
         <DateInput
           id={element.name}
           type="date"
+          required={element.isRequired}
+          placeholder={element.placeholder}
+          name={element.name}
+          label={element.title}
+          span={element.span}
+        />
+      );
+    case 'file':
+      return (
+        <FileUpload
+          id={element.name}
+          type="select"
           required={element.isRequired}
           placeholder={element.placeholder}
           name={element.name}
@@ -135,18 +174,22 @@ export const buildValidationSchema = data => {
           break;
         }
         case 'text':
+        case 'number':
+        case 'checkbox':
+        case 'boolean':
         case 'date':
         case 'radiogroup':
+        case 'file':
           schema[element.name] = yup.string();
           break;
         default:
           break;
       }
-      // if (element.isRequired) {
-      //   schema[element.name] = schema[element.name].required(
-      //     `${element.title ?? element.name} is required.`,
-      //   );
-      // }
+      if (element.isRequired) {
+        schema[element.name] = schema[element.name].required(
+          `${element.title ?? element.name} is required.`,
+        );
+      }
       if (element.validators) {
         element.validators.forEach(validator => {
           if (validator.type === 'regex') {
@@ -160,6 +203,8 @@ export const buildValidationSchema = data => {
     });
 
   createSchema(data?.elements);
+
+  console.log('schema', schema);
 
   return yup.object().shape(schema);
 };

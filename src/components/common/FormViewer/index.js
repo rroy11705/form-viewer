@@ -22,8 +22,10 @@ const FormViewer = ({ model = null }) => {
     resolver: yupResolver(validationSchema),
   });
 
-  console.log('pageDetails', pageDetails);
-  console.log('validationSchema', validationSchema);
+  // console.log('pageDetails', pageDetails);
+  // console.log('validationSchema', validationSchema);
+
+  console.log('watch', methods.watch());
 
   if (model)
     return (

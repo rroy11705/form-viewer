@@ -38,6 +38,7 @@ const FileUpload = ({
   maxFiles = Infinity,
   maxFileSize = Infinity,
   allowedFileExtensions = [],
+  span,
 }) => {
   const {
     control,
@@ -78,6 +79,7 @@ const FileUpload = ({
           maxFiles={maxFiles}
           maxFileSize={maxFileSize}
           allowedFileExtensions={allowedFileExtensions}
+          span={span}
         />
       )}
     />

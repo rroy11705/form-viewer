@@ -25,13 +25,19 @@ const FormContent = ({ model, page, methods, onPageChange }) => {
             margin: '0 auto',
           }}
         >
-          <div>{pageDetails?.title}</div>
+          <div className="text-2xl pb-3">{pageDetails?.title}</div>
           <div className="flex flex-col gap-3">
             {pageDetails?.elements.map(element => (
               <React.Fragment key={element.name}>{renderElement(element)}</React.Fragment>
             ))}
           </div>
         </div>
+        {page > 0 ? <button onClick={() => onPageChange(page - 1)}>Previous</button> : null}
+        {model?.pages.length - 1 === page ? (
+          <button type="submit">Submit</button>
+        ) : (
+          <button type="submit">Next</button>
+        )}
       </form>
     </FormProvider>
   );
