@@ -4,6 +4,8 @@ import FormSidebar from '../FormSidebar';
 import FormContent from '../FormContent';
 import FormStepper from '../FormStepper';
 import { buildValidationSchema } from '../../../helper';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 const FormViewer = ({ model = null }) => {
   const [page, setPage] = useState(0);
@@ -15,6 +17,10 @@ const FormViewer = ({ model = null }) => {
   const pageDetails = useMemo(() => model?.pages?.at(page) ?? null, [model, page]);
 
   const validationSchema = buildValidationSchema(pageDetails);
+
+  const methods = useForm({
+    resolver: yupResolver(validationSchema),
+  });
 
   console.log('pageDetails', pageDetails);
   console.log('validationSchema', validationSchema);
@@ -47,7 +53,12 @@ const FormViewer = ({ model = null }) => {
               onPageChange={handleChangePage}
             />
           )}
-          <FormContent model={model} page={page} />
+          <FormContent
+            model={model}
+            page={page}
+            methods={methods}
+            onPageChange={handleChangePage}
+          />
         </div>
       </div>
     );
