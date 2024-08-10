@@ -4,10 +4,14 @@ import { useForm, FormProvider } from 'react-hook-form';
 import SelectField from './components/forms/Select/index';
 import TextField from '../src/components/forms/InputField/index';
 import RadioGroup from './components/forms/RadioGroup';
-import CheckBox from './components/forms/CheckBox.js';
+import CheckBox from './components/forms/CheckBox';
+import PhoneInputField from './components/forms/PhoneInputField';
+import { useState } from 'react';
 
 function App() {
   // const methods = useForm();
+
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   const options = [
     { label: 'Option 1', value: 'option1' },
@@ -43,7 +47,16 @@ function App() {
   };
   return (
     <div className="h-screen">
-      <FormViewer model={json} />
+      {/* <FormViewer model={json} /> */}
+      {/* <PhoneInputField
+        phoneNumber={phoneNumber}
+        setPhoneNumber={setPhoneNumber}
+        placeholder={'Enter phone number'}
+        helperText={'This is helper text'}
+        label={'Mobile Number'}
+        required={true}
+      /> */}
+
       {/* <FormProvider {...methods}>
         <form>
           <SelectField
