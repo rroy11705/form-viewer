@@ -39,7 +39,7 @@ const RadioGroup = ({
         console.log('value', value);
         return (
           <div
-            className="flex flex-col justify-center gap-3 mb-6 h-10"
+            className="flex flex-col justify-center gap-3 mb-6 min-h-10"
             style={{ width: spanMap(span) }}
           >
             {label && (
