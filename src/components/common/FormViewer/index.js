@@ -61,7 +61,7 @@ const FormViewer = ({ model = null }) => {
               />
             )}
             {isFormSubmit ? (
-              <SubmitFormView data={methods.watch()} />
+              <SubmitFormView data={methods.watch()} model={model} />
             ) : (
               <FormContent
                 model={model}
