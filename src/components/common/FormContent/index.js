@@ -1,19 +1,22 @@
 import React, { useMemo } from 'react';
 import { renderElement } from '../../../helper';
 import { FormProvider } from 'react-hook-form';
+import { ToastProvider, useToast } from '../../forms/Toaster/ToastContext';
 
-const FormContent = ({ model, page, methods, onPageChange }) => {
+const FormContent = ({ model, page, methods, onPageChange, setIsFormSubmit }) => {
   const pageDetails = useMemo(() => model?.pages?.at(page) ?? null, [model, page]);
+  const { showToast } = useToast();
 
   console.log(methods?.formState?.errors);
   const onSubmit = data => {
-    console.log(data);
     console.log(model.pages);
     console.log(page);
     if (page < model.pages.length - 1) {
       onPageChange(page + 1);
     } else {
       console.log(data); // Final form submission
+      setIsFormSubmit(true);
+      showToast('Your form has been submitted successfully!', 'success');
     }
   };
   return (

@@ -9,6 +9,7 @@ import RadioGroup from '../components/forms/RadioGroup';
 import FileUpload from '../components/forms/FileUpload';
 import Textarea from '../components/forms/TextArea';
 import Matrix from '../components/forms/Matrix';
+import HTMLElement from '../components/forms/HTMLElement';
 
 export const VisibleIfRegex = /\{([^}]+)\}\s*=\s*'([^']+)'/;
 
@@ -70,6 +71,9 @@ export const renderElement = element => {
           label={element.title}
           span={element.span}
           visibleIf={element.visibleIf}
+          minWidth={element.minWidth}
+          maxWidth={element.maxWidth}
+          margin={element.margin}
         />
       );
     case 'textarea':
@@ -141,19 +145,23 @@ export const renderElement = element => {
           label={element.title}
           span={element.span}
           visibleIf={element.visibleIf}
+          maxWidth={element.maxWidth}
+          minWidth={element.minWidth}
+          margin={element.margin}
         />
       );
     case 'file':
       return (
         <FileUpload
           id={element.name}
-          type="select"
+          // type="select"
           required={element.isRequired}
           placeholder={element.placeholder}
           name={element.name}
           label={element.title}
           span={element.span}
-          visibleIf={element.visibleIf}
+          maxFiles={1}
+          // visibleIf={element.visibleIf}
         />
       );
     case 'dropdown':
@@ -183,6 +191,16 @@ export const renderElement = element => {
           name={element.name}
         />
       );
+    case 'html':
+      return (
+        <HTMLElement
+          id={element.name}
+          type={element.type}
+          html={element.html}
+          minWidth={element?.minWidth}
+          maxWidth={element?.maxWidth}
+        />
+      );
 
     default:
       return null;
@@ -204,12 +222,16 @@ export const buildValidationSchema = data => {
         case 'boolean':
         case 'date':
         case 'radiogroup':
-        case 'file':
+        case 'dropdown':
           schema[element.name] = yup.string();
           break;
         case 'checkbox':
-        default:
           schema[element.name] = yup.array().of(yup.string());
+          break;
+        case 'file':
+          schema[element.name] = yup.mixed();
+          break;
+        default:
           break;
       }
       if (element.isRequired) {

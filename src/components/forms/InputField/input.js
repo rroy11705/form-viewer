@@ -30,15 +30,14 @@ const InputField = forwardRef(
       pattern,
       readOnly,
       span,
+      width,
+      maxWidth,
+      minWidth,
+      margin,
     },
     ref,
   ) => {
     const [inputValue, setInputValue] = useState(value || '');
-
-    useEffect(() => {
-      if (value) {
-      }
-    }, [value]);
 
     // Handle input change
     const handleChange = e => {
@@ -48,7 +47,10 @@ const InputField = forwardRef(
     };
 
     return (
-      <div className="relative flex flex-col gap-3 mb-6" style={{ width: spanMap(span) }}>
+      <div
+        className="relative flex flex-col gap-3 mb-6"
+        style={{ width: width ?? spanMap(span), maxWidth, minWidth, margin }}
+      >
         {label && (
           <label htmlFor={id} className="block mb-2 text-sm font-medium text-gray-900">
             {label}

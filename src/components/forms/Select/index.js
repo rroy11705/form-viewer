@@ -1,6 +1,7 @@
 import React, { forwardRef, useEffect } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import Select from './select';
+import { VisibleIfRegex } from '../../../helper';
 
 const DEFAULT_VALUE = '';
 
@@ -45,19 +46,15 @@ const SelectField = (
     selectHeight = null,
     label = '',
     name = '',
-    value = DEFAULT_VALUE,
     optionMapFunction = null,
     onOptionSearch = null,
     options = [],
-    onChange = () => null,
-    onBlur = () => null,
     required = false,
     placeholder = '',
     disabled = false,
     startIcon = null,
     endIcon = null,
     color = null,
-    error = '',
     success = '',
     showErrorIcon = false,
     showSuccessIcon = false,
@@ -70,71 +67,62 @@ const SelectField = (
     emptyOptionsComponent = null,
     clearSelectionButton = false,
     span,
+    visibleIf,
   },
   ref,
 ) => {
   const {
     control,
-    setValue,
+    watch,
     formState: { errors },
   } = useFormContext();
 
-  useEffect(() => {
-    if (value && value !== DEFAULT_VALUE) {
-      setValue(name, value);
-    } else if (value === DEFAULT_VALUE) {
-      setValue(name, undefined);
-    }
-  }, [value, setValue, name]);
+  const visibleIfMatch = visibleIf?.match(VisibleIfRegex);
 
-  return (
-    <Controller
-      name={name}
-      control={control}
-      render={({ field: { ref, value, onBlur: defaultOnBlur, onChange: defaultOnChange } }) => {
-        return (
-          <Select
-            ref={ref}
-            id={id}
-            selectHeight={selectHeight}
-            label={label}
-            name={name}
-            value={options ? value : undefined}
-            optionMapFunction={optionMapFunction}
-            onOptionSearch={onOptionSearch}
-            options={options}
-            onChange={e => {
-              defaultOnChange(e);
-              onChange && onChange(e);
-            }}
-            onBlur={e => {
-              defaultOnBlur(e);
-              onBlur && onBlur(e);
-            }}
-            required={required}
-            placeholder={placeholder}
-            disabled={disabled}
-            startIcon={startIcon}
-            endIcon={endIcon}
-            color={color}
-            error={errors[name]?.message}
-            success={success}
-            showErrorIcon={showErrorIcon}
-            showSuccessIcon={showSuccessIcon}
-            helperText={helperText}
-            iconInfo={iconInfo}
-            searchable={searchable}
-            searchInputPlaceholder={searchInputPlaceholder}
-            menuHeight={menuHeight}
-            emptySearchComponent={emptySearchComponent}
-            emptyOptionsComponent={emptyOptionsComponent}
-            clearSelectionButton={clearSelectionButton}
-            span={span}
-          />
-        );
-      }}
-    />
-  );
+  if (!visibleIf || (visibleIfMatch && watch(visibleIfMatch[1]) === visibleIfMatch[2]))
+    return (
+      <Controller
+        name={name}
+        control={control}
+        render={({ field: { ref, value, onBlur: defaultOnBlur, onChange: defaultOnChange } }) => {
+          return (
+            <Select
+              ref={ref}
+              id={id}
+              selectHeight={selectHeight}
+              label={label}
+              name={name}
+              value={options ? value : undefined}
+              optionMapFunction={optionMapFunction}
+              onOptionSearch={onOptionSearch}
+              options={options}
+              onChange={defaultOnChange}
+              onBlur={defaultOnBlur}
+              required={required}
+              placeholder={placeholder}
+              disabled={disabled}
+              startIcon={startIcon}
+              endIcon={endIcon}
+              color={color}
+              error={errors[name]?.message}
+              success={success}
+              showErrorIcon={showErrorIcon}
+              showSuccessIcon={showSuccessIcon}
+              helperText={helperText}
+              iconInfo={iconInfo}
+              searchable={searchable}
+              searchInputPlaceholder={searchInputPlaceholder}
+              menuHeight={menuHeight}
+              emptySearchComponent={emptySearchComponent}
+              emptyOptionsComponent={emptyOptionsComponent}
+              clearSelectionButton={clearSelectionButton}
+              span={span}
+            />
+          );
+        }}
+      />
+    );
+  return null;
 };
 
 export default forwardRef(SelectField);

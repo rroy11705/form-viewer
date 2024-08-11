@@ -30,6 +30,10 @@ const TextField = (
     readOnly,
     span,
     visibleIf,
+    width,
+    maxWidth,
+    minWidth,
+    margin,
   },
   ref,
 ) => {
@@ -84,6 +88,10 @@ const TextField = (
                 onBlur && onBlur(e);
               }}
               span={span}
+              width={width}
+              minWidth={minWidth}
+              maxWidth={maxWidth}
+              margin={margin}
             />
           );
         }}

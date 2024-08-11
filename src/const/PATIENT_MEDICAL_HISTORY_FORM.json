@@ -382,8 +382,7 @@
               "name": "schoolYearsCompleted",
               "title": "How many yeas of school have you completed?",
               "isRequired": true,
-              "choicesMin": 0,
-              "choicesMax": 12
+              "choices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
             }
           ],
           "title": "Education"
@@ -399,19 +398,6 @@
               "isRequired": true,
               "name": "employmentStatus",
               "title": "Your current employment status:"
-            },
-            {
-              "type": "text",
-              "name": "currentOcupation",
-              "visible": false,
-              "visibleIf": "{employmentStatus} = 'Employed'",
-              "title": "Current Ocupation(s):",
-              "isRequired": true
-            },
-            {
-              "type": "comment",
-              "name": "previousOccupations",
-              "title": "Previous Occupations/Jobs:"
             }
           ],
           "title": "Occupations"
@@ -529,7 +515,7 @@
               "title": "Are you currently married?"
             },
             {
-              "type": "text",
+              "type": "number",
               "name": "currentMarriageYear",
               "visible": false,
               "visibleIf": "{currentlyMarried} = 'Yes'",
@@ -616,21 +602,8 @@
           "choices": ["Yes", "No"],
           "colCount": 0,
           "name": "adopted",
+          "isRequired": true,
           "title": "Are you adopted?"
-        },
-        {
-          "type": "html",
-          "name": "adoptedInfo",
-          "visible": false,
-          "visibleIf": "{adopted} = 'Yes'",
-          "html": "If known, complete the following information about your <b>blood</b> relatives (include children).  Exclude adoptive parents, siblings and   adopted children."
-        },
-        {
-          "type": "html",
-          "name": "nonAdoptedInfo",
-          "visible": false,
-          "visibleIf": "{adopted} = 'No'",
-          "html": "Complete the following information about your <b>blood</b> relatives.  Exclude adoptive siblings and adopted children. "
         },
         {
           "type": "panel",
@@ -642,97 +615,15 @@
               "type": "dropdown",
               "name": "relativeType",
               "title": "Blood Relative:",
-              "isRequired": true,
               "choices": ["Father", "Mother", "Brother", "Sister", "Son", "Daughter"]
             },
             {
               "type": "radiogroup",
               "choices": ["Alive", "Deceased", "Unknown"],
               "colCount": 0,
-              "isRequired": true,
               "name": "relativeStatus",
               "startWithNewLine": false,
               "title": "Is he/she:"
-            },
-            {
-              "type": "text",
-              "name": "relativeAge",
-              "visible": false,
-              "visibleIf": "{panel.relativeStatus} = 'Alive'",
-              "startWithNewLine": false,
-              "title": "Current age:",
-              "isRequired": true
-            },
-            {
-              "type": "text",
-              "name": "relativeAgeOfDeath",
-              "visible": false,
-              "visibleIf": "{panel.relativeStatus} = 'Deceased'",
-              "startWithNewLine": false,
-              "title": "Age of death:",
-              "isRequired": true
-            },
-            {
-              "type": "panel",
-              "name": "relativeDeathInfo",
-              "elements": [
-                {
-                  "type": "radiogroup",
-                  "choices": ["Known", "Unknown"],
-                  "colCount": 0,
-                  "isRequired": true,
-                  "name": "relativeCauseOfDeath",
-                  "title": "Cause of death:"
-                },
-                {
-                  "type": "comment",
-                  "isRequired": true,
-                  "name": "relativeCauseOfDeathDescription",
-                  "title": "Description:",
-                  "visible": false,
-                  "visibleIf": "{panel.relativeCauseOfDeath} = 'Known'"
-                }
-              ],
-              "visible": false,
-              "visibleIf": "{panel.relativeStatus} = 'Deceased'"
-            },
-            {
-              "type": "matrixdynamic",
-              "name": "relativeCondition",
-              "title": "Describe the illness or conditios",
-              "titleLocation": "top",
-              "columns": [
-                {
-                  "name": "name",
-                  "title": "Illness/Condition",
-                  "choices": [
-                    "Cancer",
-                    "Heart Disease",
-                    "Diabetes",
-                    "Stroke/TIA",
-                    "High Blood Pressure",
-                    "High Cholesterol or Triglycerides",
-                    "Liver Disease",
-                    "Alcohol or Drug Abuse",
-                    "Anxiety, Depression or Psychiatric Illness",
-                    "Tuberculosis",
-                    "Anesthesia Complications",
-                    "Genetic Disorder",
-                    "Other"
-                  ],
-                  "cellType": "dropdown",
-                  "isRequired": true
-                },
-                {
-                  "name": "description",
-                  "title": "Describe",
-                  "cellType": "comment",
-                  "isRequired": true
-                }
-              ],
-              "choices": [1, 2, 3, 4, 5],
-              "rowCount": 1,
-              "addRowText": "Add illness"
             }
           ],
           "panelCount": 1,
@@ -1108,248 +999,52 @@
     {
       "elements": [
         {
-          "type": "matrix",
-          "columns": ["No", "Yes"],
-          "isAllRowRequired": true,
-          "name": "sympthoms",
-          "rows": [
-            "Skin rash, sore, excessive bruising or change of a mole?",
-            "Excessive thirst or urination?",
-            "Change in sexual drive or performance?",
-            "Significant headaches, seizures, slurred speech or difficulty moving an arm or leg?",
-            "Eye problems such as double or blurred vision, cataracts or glaucoma?",
-            "Diminished hearing, dizziness, hoarseness or sinus problems?",
-            {
-              "value": "dentures",
-              "text": "Do you wear dentures?"
-            },
-            "Bothered with cough, shortness of breath, wheezing or asthma?",
-            "Coughing up sputum or blood?",
-            "Exposed to anyone with tuberculosis?",
-            "“Blacked out” or lost consciousness?",
-            "Chest pain or pressure, rapid or irregular heart beats, or known difficulty with a heart valve?",
-            "Awakening at night with shortness of breath?",
-            "Abnormal swelling in the legs or feet?",
-            "Pain in the calves of your legs when you walk?",
-            "Difficulty with swallowing, heartburn, nausea, vomiting or stomach trouble?",
-            "Significant problems with constipation, diarrhea, blood/changes in bowel movements?",
-            {
-              "value": "colon_rectum_x-ray",
-              "text": "Have you had a colon or rectum x-ray or instrument examination (proctoscopy, sigmoidoscopy, colonoscopy)?"
-            },
-            {
-              "value": "endoscopy",
-              "text": "Have you had an upper endoscopy to evaluate the stomach for varices?"
-            },
-            "Have you had any treatment for varices? (sclerotherapy, banding)",
-            "Difficulty starting your urinary stream, completely emptying your bladder or leaking urine from your bladder?",
-            "Burning or pain when urinating?",
-            "Pain, stiffness or swelling in your back, joints or muscles?",
-            "Fever within the last month?",
-            "Enlarged glands (lymph nodes)?",
-            "Feel you are at risk for HIV or AIDS?",
-            "Immunized for influenza, tetanus/diphtheria and/or pneumonia within the last year?",
-            "Experiencing an unusually stressful situation?",
-            "Weight gain or loss of more than 10 pounds during the last 6 months?",
-            "Problems falling asleep, staying asleep, sleep apnea or disruptive snoring?",
-            "Have you ever felt a need to cut down on your alcohol consumption?",
-            "Do relatives/friends worry or complain about your alcohol consumption?",
-            "Have you been physically, sexually, or emotionally abused?"
-          ],
-          "title": "Indicate whether you have experienced the following symptoms during recent months, unless otherwise specified",
-          "titleLocation": "top"
-        },
-        {
-          "type": "radiogroup",
-          "choices": [" Ful", "Upper", "Lower", "Partial"],
-          "colCount": 0,
-          "name": "howWearDentures",
-          "title": "How do you wear dentures?",
-          "visible": false,
-          "visibleIf": "{sympthoms.dentures}  = 'Yes'"
-        },
-        {
-          "type": "multipletext",
-          "name": "colonRectumDate",
-          "visible": false,
-          "visibleIf": "{sympthoms.colon_rectum_x-ray} = 'Yes'",
-          "title": "Whe did you do a colon or rectum x-ray or instrument examination (proctoscopy, sigmoidoscopy, colonoscopy)?  Approximate date:",
-          "isRequired": true,
-          "items": [
-            {
-              "name": "mo",
-              "title": "Month"
-            },
-            {
-              "name": "year",
-              "title": "Year"
-            }
-          ],
-          "colCount": 2
-        },
-        {
-          "type": "multipletext",
-          "name": "endoscopyDate",
-          "visible": false,
-          "visibleIf": "{sympthoms.endoscopy} = 'Yes'",
-          "title": "Whe did you have an upper endoscopy to evaluate the stomach for varices?  Approximate date:",
-          "isRequired": true,
-          "items": [
-            {
-              "name": "mo",
-              "title": "Month"
-            },
-            {
-              "name": "year",
-              "title": "Year"
-            }
-          ],
-          "colCount": 2
-        },
-        {
           "type": "panel",
-          "name": "questionsToFemale",
           "elements": [
             {
-              "type": "radiogroup",
-              "choices": ["Unknown", "No", "Yes"],
-              "colCount": 0,
-              "name": "abnormalPapSmear",
-              "title": "Have you ever had an abnormal Pap smear?"
-            },
-            {
-              "type": "radiogroup",
-              "choices": ["No", "Yes"],
-              "colCount": 0,
-              "isRequired": true,
-              "name": "menopause",
-              "title": "Have you experienced menopause or had a hysterectomy?"
-            },
-            {
-              "type": "panel",
-              "name": "panelNoMenopause",
-              "elements": [
-                {
-                  "type": "radiogroup",
-                  "choices": ["No", "Yes"],
-                  "colCount": 0,
-                  "isRequired": true,
-                  "name": "concernedAboutMenstrualPeriods",
-                  "title": "Are you concerned about your menstrual periods?"
-                },
-                {
-                  "type": "radiogroup",
-                  "choices": ["No", "Yes"],
-                  "colCount": 0,
-                  "isRequired": true,
-                  "name": "pregnant",
-                  "title": "Might you be pregnant at this time?"
-                },
-                {
-                  "type": "text",
-                  "name": "lastMenstrualPeriod",
-                  "title": "Date of onset of your last menstrual period:",
-                  "inputType": "date"
-                },
-                {
-                  "type": "panel",
-                  "name": "panelPapSmearExam",
-                  "elements": [
-                    {
-                      "type": "radiogroup",
-                      "choices": ["No", "Yes"],
-                      "colCount": 0,
-                      "isRequired": true,
-                      "name": "papSmearExam",
-                      "title": "Have you ever done Pap smear and pelvic exam:"
-                    },
-                    {
-                      "type": "multipletext",
-                      "name": "papSmearExamDate",
-                      "visible": false,
-                      "visibleIf": "{papSmearExam} = 'Yes'",
-                      "title": "Approximate date of your last Pap smear and pelvic exam:",
-                      "isRequired": true,
-                      "items": [
-                        {
-                          "name": "mo",
-                          "title": "Month"
-                        },
-                        {
-                          "name": "year",
-                          "title": "Year"
-                        }
-                      ],
-                      "colCount": 2
-                    },
-                    {
-                      "type": "radiogroup",
-                      "choices": ["No", "Yes"],
-                      "colCount": 0,
-                      "isRequired": true,
-                      "name": "mammogram",
-                      "title": "Have you ever done mammogram:"
-                    },
-                    {
-                      "type": "multipletext",
-                      "name": "mammogramDate",
-                      "visible": false,
-                      "visibleIf": "{mammogram} = 'Yes'",
-                      "title": "Approximate date of your last mammogram:",
-                      "isRequired": true,
-                      "items": [
-                        {
-                          "name": "mo",
-                          "title": "Month"
-                        },
-                        {
-                          "name": "year",
-                          "title": "Year"
-                        }
-                      ],
-                      "colCount": 2
-                    }
-                  ]
-                },
-                {
-                  "type": "panel",
-                  "name": "panelPregnancies",
-                  "elements": [
-                    {
-                      "type": "text",
-                      "name": "pregnancies",
-                      "title": "Pregnancies:",
-                      "isRequired": true,
-                      "inputType": "number"
-                    },
-                    {
-                      "type": "text",
-                      "name": "liveBirths",
-                      "startWithNewLine": false,
-                      "title": "Live Births:",
-                      "isRequired": true,
-                      "inputType": "number"
-                    },
-                    {
-                      "type": "text",
-                      "name": "abortions",
-                      "startWithNewLine": false,
-                      "title": "Miscarriages/abortions:",
-                      "isRequired": true,
-                      "inputType": "number",
-                      "min": 0
-                    }
-                  ],
-                  "title": "Number of:"
-                }
+              "type": "matrix",
+              "columns": ["No", "Yes"],
+              "isAllRowRequired": true,
+              "name": "sympthoms",
+              "rows": [
+                "Skin rash, sore, excessive bruising or change of a mole?",
+                "Excessive thirst or urination?",
+                "Change in sexual drive or performance?",
+                "Significant headaches, seizures, slurred speech or difficulty moving an arm or leg?",
+                "Eye problems such as double or blurred vision, cataracts or glaucoma?",
+                "Diminished hearing, dizziness, hoarseness or sinus problems?",
+                "Do you wear dentures?",
+                "Bothered with cough, shortness of breath, wheezing or asthma?",
+                "Coughing up sputum or blood?",
+                "Exposed to anyone with tuberculosis?",
+                "“Blacked out” or lost consciousness?",
+                "Chest pain or pressure, rapid or irregular heart beats, or known difficulty with a heart valve?",
+                "Awakening at night with shortness of breath?",
+                "Abnormal swelling in the legs or feet?",
+                "Pain in the calves of your legs when you walk?",
+                "Difficulty with swallowing, heartburn, nausea, vomiting or stomach trouble?",
+                "Significant problems with constipation, diarrhea, blood/changes in bowel movements?",
+                "Have you had a colon or rectum x-ray or instrument examination (proctoscopy, sigmoidoscopy, colonoscopy)?",
+                "Have you had an upper endoscopy to evaluate the stomach for varices?",
+                "Have you had any treatment for varices? (sclerotherapy, banding)",
+                "Difficulty starting your urinary stream, completely emptying your bladder or leaking urine from your bladder?",
+                "Burning or pain when urinating?",
+                "Pain, stiffness or swelling in your back, joints or muscles?",
+                "Fever within the last month?",
+                "Enlarged glands (lymph nodes)?",
+                "Feel you are at risk for HIV or AIDS?",
+                "Immunized for influenza, tetanus/diphtheria and/or pneumonia within the last year?",
+                "Experiencing an unusually stressful situation?",
+                "Weight gain or loss of more than 10 pounds during the last 6 months?",
+                "Problems falling asleep, staying asleep, sleep apnea or disruptive snoring?",
+                "Have you ever felt a need to cut down on your alcohol consumption?",
+                "Do relatives/friends worry or complain about your alcohol consumption?",
+                "Have you been physically, sexually, or emotionally abused?"
               ],
-              "visible": false,
-              "visibleIf": "{menopause} = 'No'"
+              "titleLocation": "top"
             }
           ],
-          "visible": false,
-          "visibleIf": "{sex} = 'female'",
-          "title": "For Female Patients"
+          "title": "Indicate whether you have experienced the following symptoms during recent months, unless otherwise specified"
         }
       ],
       "name": "systemsReview",
@@ -1358,61 +1053,20 @@
     {
       "elements": [
         {
-          "type": "matrix",
-          "columns": ["No", "Yes"],
-          "isAllRowRequired": true,
-          "name": "performingActivities",
-          "rows": ["Eating", "Bathing", "Dressing", "Walking", "Using Toilet", "Housekeeping"],
-          "title": "Do you have difficulty performing these activities by YOURSELF?"
-        },
-        {
-          "type": "radiogroup",
-          "choices": ["No", "Yes"],
-          "colCount": "0",
-          "isRequired": true,
-          "name": "specialDietary",
-          "title": "Do you have any special dietary needs?"
-        },
-        {
-          "type": "comment",
-          "isRequired": true,
-          "name": "specialDietaryDescription",
-          "title": "Please describe your special dietery:",
-          "visibleIf": "{specialDietary} = 'Yes'"
-        },
-        {
-          "type": "radiogroup",
-          "choices": ["House", "Apartment", "Nursing Home"],
-          "colCount": 0,
-          "showOtherItem": true,
-          "isRequired": true,
-          "name": "livingArrangement",
-          "title": "What is your current living arrangement?"
-        },
-        {
-          "type": "radiogroup",
-          "choices": ["Alone", "With Spouse/Family", "With others"],
-          "colCount": 0,
-          "isRequired": true,
-          "name": "liveWithWhom",
-          "title": "Do you live?"
-        },
-        {
-          "type": "comment",
-          "isRequired": true,
-          "name": "liveWithWhomDescription",
-          "title": "Please describe with whom do you live:",
-          "visibleIf": "{liveWithWhom} = 'With others'"
-        },
-        {
-          "type": "comment",
-          "name": "peopleProvidedAssistence",
-          "title": "List family or friends able to provide assistance with your homecare needs if you would ever require such assistance:",
-          "titleLocation": "top"
+          "type": "panel",
+          "elements": [
+            {
+              "type": "matrix",
+              "columns": ["No", "Yes"],
+              "isAllRowRequired": true,
+              "name": "selfCare",
+              "rows": ["Eating", "Bathing", "Dressing", "Walking", "Using Toilet", "Housekeeping"]
+            }
+          ]
         }
       ],
       "name": "selfCare",
-      "title": "Self-Care/Home Environment Assessment"
+      "title": "Do you have difficulty performing these activities by YOURSELF?"
     },
     {
       "elements": [
@@ -1429,10 +1083,8 @@
             "Violent & abusive behavior",
             "Living wills",
             "Diabetes",
-            "Cancer screening   "
+            "Cancer screening"
           ],
-          "colCount": "3",
-          "showOtherItem": true,
           "name": "interestedInTopics",
           "title": "Are you interested in more information about a specific topic(s)?"
         }
