@@ -7,9 +7,12 @@ import { buildValidationSchema } from '../../../helper';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ToastProvider } from '../../forms/Toaster/ToastContext';
+import SubmitFormView from '../SubmitFormView';
 
 const FormViewer = ({ model = null }) => {
   const [page, setPage] = useState(0);
+
+  const [isFormSubmit, setIsFormSubmit] = useState(false);
 
   const handleChangePage = p => {
     setPage(p);
@@ -57,12 +60,17 @@ const FormViewer = ({ model = null }) => {
                 onPageChange={handleChangePage}
               />
             )}
-            <FormContent
-              model={model}
-              page={page}
-              methods={methods}
-              onPageChange={handleChangePage}
-            />
+            {isFormSubmit ? (
+              <SubmitFormView data={methods.watch()} />
+            ) : (
+              <FormContent
+                model={model}
+                page={page}
+                methods={methods}
+                onPageChange={handleChangePage}
+                setIsFormSubmit={setIsFormSubmit}
+              />
+            )}
           </div>
         </div>
       </ToastProvider>

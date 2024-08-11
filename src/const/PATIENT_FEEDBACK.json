@@ -26,7 +26,6 @@
               "maxWidth": "5%",
               "margin": 0
             },
-
             {
               "type": "date",
               "name": "date-picker",
